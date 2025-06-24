@@ -40,8 +40,8 @@ const Dashboard = () => {
       <div className="space-y-8 animate-fade-in">
         {/* Header */}
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold text-white">Dashboard</h1>
-          <p className="text-white/70">Visão geral do seu negócio</p>
+          <h1 className="text-4xl font-bold text-gray-900">Dashboard</h1>
+          <p className="text-gray-600">Visão geral do seu negócio</p>
         </div>
 
         {/* Stats Grid */}
@@ -49,11 +49,11 @@ const Dashboard = () => {
           {stats.map((stat, index) => (
             <Card 
               key={stat.title} 
-              className="glass-card border-white/20 animate-fade-in"
+              className="glass-card border-green-200/40 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-white/80">
+                <CardTitle className="text-sm font-medium text-gray-700">
                   {stat.title}
                 </CardTitle>
                 <div className={`p-2 rounded-lg bg-gradient-to-r ${stat.color}`}>
@@ -61,8 +61,8 @@ const Dashboard = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-white">{stat.value}</div>
-                <p className="text-xs text-green-400 flex items-center mt-1">
+                <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+                <p className="text-xs text-green-600 flex items-center mt-1">
                   <TrendingUp className="w-3 h-3 mr-1" />
                   {stat.change} em relação ao mês anterior
                 </p>
@@ -73,9 +73,9 @@ const Dashboard = () => {
 
         {/* Recent Activity */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="glass-card border-white/20">
+          <Card className="glass-card border-green-200/40">
             <CardHeader>
-              <CardTitle className="text-white">Atividades Recentes</CardTitle>
+              <CardTitle className="text-gray-900">Atividades Recentes</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {[
@@ -83,20 +83,20 @@ const Dashboard = () => {
                 { action: 'Serviço finalizado', client: 'Maria Santos', time: '15 min' },
                 { action: 'Pagamento recebido', client: 'Pedro Costa', time: '1 hora' },
               ].map((activity, index) => (
-                <div key={index} className="flex items-center justify-between p-3 glass border border-white/10 rounded-lg">
+                <div key={index} className="flex items-center justify-between p-3 bg-white/60 border border-green-200/50 rounded-lg">
                   <div>
-                    <p className="text-white font-medium">{activity.action}</p>
-                    <p className="text-white/60 text-sm">{activity.client}</p>
+                    <p className="text-gray-900 font-medium">{activity.action}</p>
+                    <p className="text-gray-600 text-sm">{activity.client}</p>
                   </div>
-                  <span className="text-white/60 text-sm">{activity.time}</span>
+                  <span className="text-gray-500 text-sm">{activity.time}</span>
                 </div>
               ))}
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-white/20">
+          <Card className="glass-card border-green-200/40">
             <CardHeader>
-              <CardTitle className="text-white">Próximos Vencimentos</CardTitle>
+              <CardTitle className="text-gray-900">Próximos Vencimentos</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {[
@@ -104,14 +104,14 @@ const Dashboard = () => {
                 { service: 'Consultoria Fiscal', client: 'Tech Corp', value: 'R$ 1.800', date: '27/06' },
                 { service: 'Auditoria Interna', client: 'Indústria XYZ', value: 'R$ 5.200', date: '30/06' },
               ].map((payment, index) => (
-                <div key={index} className="flex items-center justify-between p-3 glass border border-white/10 rounded-lg">
+                <div key={index} className="flex items-center justify-between p-3 bg-white/60 border border-green-200/50 rounded-lg">
                   <div>
-                    <p className="text-white font-medium">{payment.service}</p>
-                    <p className="text-white/60 text-sm">{payment.client}</p>
+                    <p className="text-gray-900 font-medium">{payment.service}</p>
+                    <p className="text-gray-600 text-sm">{payment.client}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-green-400 font-medium">{payment.value}</p>
-                    <p className="text-white/60 text-sm">{payment.date}</p>
+                    <p className="text-green-600 font-medium">{payment.value}</p>
+                    <p className="text-gray-500 text-sm">{payment.date}</p>
                   </div>
                 </div>
               ))}
