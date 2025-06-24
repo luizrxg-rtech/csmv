@@ -1,23 +1,21 @@
-
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Building2, Users, BarChart3, CreditCard, Lock, Mail, Wheat, Tractor } from 'lucide-react';
+import {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {useAuth} from '@/contexts/AuthContext';
+import {Button} from '@/components/ui/button';
+import {Input} from '@/components/ui/input';
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
+import {BarChart3, CreditCard, Lock, Mail, Tractor, Users, Wheat} from 'lucide-react';
 
 const Landing = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(localStorage.getItem('email') || '');
+  const [password, setPassword] = useState(localStorage.getItem('password') || '');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleLogin = async () => {
     setIsLoading(true);
     setError('');
     
@@ -34,6 +32,12 @@ const Landing = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('email')) {
+      handleLogin().then();
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 flex items-center justify-center p-4">

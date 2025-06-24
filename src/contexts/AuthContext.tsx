@@ -39,6 +39,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         name: 'Administrator',
         email: 'admin@example.com'
       });
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
       return true;
     }
     return false;
@@ -46,6 +48,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = () => {
     setUser(null);
+    localStorage.removeItem('email');
+    localStorage.removeItem('password');
   };
 
   const isAuthenticated = !!user;

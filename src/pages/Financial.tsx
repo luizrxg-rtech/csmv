@@ -141,8 +141,8 @@ const Financial = () => {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
           <div>
-            <h1 className="text-4xl font-bold text-white">Financeiro</h1>
-            <p className="text-white/70">Controle suas finanças e fluxo de caixa</p>
+            <h1 className="text-4xl font-bold text-gray-900">Financeiro</h1>
+            <p className="text-gray-900/70">Controle suas finanças e fluxo de caixa</p>
           </div>
           <div className="flex space-x-3">
             <Button 
@@ -162,8 +162,8 @@ const Financial = () => {
         <Card className="glass-card border-white/20">
           <CardContent className="p-6">
             <div className="text-center">
-              <div className="text-4xl font-bold text-white mb-2">R$ 0,00</div>
-              <div className="text-white/60">Saldo em contas</div>
+              <div className="text-4xl font-bold text-gray-900 mb-2">R$ 0,00</div>
+              <div className="text-gray-900/60">Saldo em contas</div>
             </div>
           </CardContent>
         </Card>
@@ -175,8 +175,8 @@ const Financial = () => {
               <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Receipt className="w-6 h-6 text-blue-400" />
               </div>
-              <div className="text-xl font-bold text-white">R$ 0,00</div>
-              <div className="text-white/60 text-sm">Receita</div>
+              <div className="text-xl font-bold text-gray-900">R$ 0,00</div>
+              <div className="text-gray-900/60 text-sm">Receita</div>
             </CardContent>
           </Card>
 
@@ -185,8 +185,8 @@ const Financial = () => {
               <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <TrendingUp className="w-6 h-6 text-green-400" />
               </div>
-              <div className="text-xl font-bold text-white">{calculateTotal(filteredReceivables)}</div>
-              <div className="text-white/60 text-sm">Receita Prevista</div>
+              <div className="text-xl font-bold text-gray-900">{calculateTotal(filteredReceivables)}</div>
+              <div className="text-gray-900/60 text-sm">Receita Prevista</div>
             </CardContent>
           </Card>
 
@@ -195,8 +195,8 @@ const Financial = () => {
               <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <TrendingDown className="w-6 h-6 text-red-400" />
               </div>
-              <div className="text-xl font-bold text-white">R$ 0,00</div>
-              <div className="text-white/60 text-sm">Despesas</div>
+              <div className="text-xl font-bold text-gray-900">R$ 0,00</div>
+              <div className="text-gray-900/60 text-sm">Despesas</div>
             </CardContent>
           </Card>
 
@@ -205,8 +205,8 @@ const Financial = () => {
               <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Eye className="w-6 h-6 text-purple-400" />
               </div>
-              <div className="text-xl font-bold text-white">{calculateTotal(filteredPayables)}</div>
-              <div className="text-white/60 text-sm">Despesas Prevista</div>
+              <div className="text-xl font-bold text-gray-900">{calculateTotal(filteredPayables)}</div>
+              <div className="text-gray-900/60 text-sm">Despesas Prevista</div>
             </CardContent>
           </Card>
         </div>
@@ -216,19 +216,19 @@ const Financial = () => {
           <CardContent className="p-6">
             <Tabs defaultValue="receivables" className="w-full">
               <TabsList className="grid w-full grid-cols-5 glass">
-                <TabsTrigger value="receivables" className="data-[state=active]:bg-green-500/20 data-[state=active]:text-green-300">
+                <TabsTrigger value="receivables" className="data-[state=active]:bg-green-500/20 data-[state=active]:text-gray-900">
                   📈 Receber
                 </TabsTrigger>
-                <TabsTrigger value="payables" className="data-[state=active]:bg-red-500/20 data-[state=active]:text-red-300">
+                <TabsTrigger value="payables" className="data-[state=active]:bg-red-500/20 data-[state=active]:text-gray-900">
                   📉 Pagar
                 </TabsTrigger>
-                <TabsTrigger value="alerts" className="data-[state=active]:bg-yellow-500/20 data-[state=active]:text-yellow-300">
+                <TabsTrigger value="alerts" className="data-[state=active]:bg-yellow-500/20 data-[state=active]:text-gray-900">
                   ⚠ Avisos de Pagamento
                 </TabsTrigger>
-                <TabsTrigger value="collections" className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-300">
+                <TabsTrigger value="collections" className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-gray-900">
                   💰 Cobranças
                 </TabsTrigger>
-                <TabsTrigger value="reports" className="data-[state=active]:bg-purple-500/20 data-[state=active]:text-purple-300">
+                <TabsTrigger value="reports" className="data-[state=active]:bg-purple-500/20 data-[state=active]:text-gray-900">
                   📊 Relatório DRE
                 </TabsTrigger>
               </TabsList>
@@ -236,34 +236,34 @@ const Financial = () => {
               {/* Receivables Tab */}
               <TabsContent value="receivables" className="space-y-6">
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-white">Contas a Receber</h3>
+                  <h3 className="text-xl font-semibold text-gray-900">Contas a Receber</h3>
                   
                   {/* Period Selection */}
                   <div className="flex flex-col lg:flex-row gap-4">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex-1">
                       <div>
-                        <label className="text-white/70 text-sm mb-2 block">Data Inicial</label>
+                        <label className="text-gray-900/70 text-sm mb-2 block">Data Inicial</label>
                         <Input 
                           type="date" 
-                          className="glass border-white/20 text-white"
+                          className="glass border-white/20 text-gray-900"
                           value={receivablesFilters.startDate}
                           onChange={(e) => setReceivablesFilters({...receivablesFilters, startDate: e.target.value})}
                         />
                       </div>
                       <div>
-                        <label className="text-white/70 text-sm mb-2 block">Data Final</label>
+                        <label className="text-gray-900/70 text-sm mb-2 block">Data Final</label>
                         <Input 
                           type="date" 
-                          className="glass border-white/20 text-white"
+                          className="glass border-white/20 text-gray-900"
                           value={receivablesFilters.endDate}
                           onChange={(e) => setReceivablesFilters({...receivablesFilters, endDate: e.target.value})}
                         />
                       </div>
                       <div>
-                        <label className="text-white/70 text-sm mb-2 block">Cliente</label>
+                        <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                         <Input 
                           placeholder="Pesquisar cliente..." 
-                          className="glass border-white/20 text-white placeholder:text-white/50"
+                          className="glass border-white/20 text-gray-900 placeholder:text-gray-900/50"
                           value={receivablesFilters.client}
                           onChange={(e) => setReceivablesFilters({...receivablesFilters, client: e.target.value})}
                         />
@@ -295,13 +295,13 @@ const Financial = () => {
                     <table className="w-full">
                       <thead>
                         <tr className="border-b border-white/10">
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Ação</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Cliente</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Descrição</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Data Vencimento</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Valor</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Valor Pago</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Status</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Ação</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Cliente</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Descrição</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Data Vencimento</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Valor</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Valor Pago</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -316,11 +316,11 @@ const Financial = () => {
                                 📋
                               </Button>
                             </td>
-                            <td className="py-4 px-4 text-white">{item.client}</td>
-                            <td className="py-4 px-4 text-white/80 max-w-xs truncate">{item.description}</td>
-                            <td className="py-4 px-4 text-white/80">{item.date}</td>
+                            <td className="py-4 px-4 text-gray-900">{item.client}</td>
+                            <td className="py-4 px-4 text-gray-900/80 max-w-xs truncate">{item.description}</td>
+                            <td className="py-4 px-4 text-gray-900/80">{item.date}</td>
                             <td className="py-4 px-4 text-green-400 font-medium">{item.value}</td>
-                            <td className="py-4 px-4 text-white/80">R$ 0,00</td>
+                            <td className="py-4 px-4 text-gray-900/80">R$ 0,00</td>
                             <td className="py-4 px-4">
                               <Badge className={`${item.status === 'Pago' ? 'bg-green-500/20 text-green-300 border-green-500/30' : 'bg-red-500/20 text-red-300 border-red-500/30'} border`}>
                                 {item.status}
@@ -334,7 +334,7 @@ const Financial = () => {
 
                   <div className="border-t border-white/10 pt-4">
                     <div className="text-right">
-                      <span className="text-white font-semibold">Total: {calculateTotal(filteredReceivables)}</span>
+                      <span className="text-gray-900 font-semibold">Total: {calculateTotal(filteredReceivables)}</span>
                     </div>
                   </div>
                 </div>
@@ -343,43 +343,43 @@ const Financial = () => {
               {/* Payables Tab */}
               <TabsContent value="payables" className="space-y-6">
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-white">Contas a Pagar</h3>
+                  <h3 className="text-xl font-semibold text-gray-900">Contas a Pagar</h3>
                   
                   {/* Period Selection */}
                   <div className="flex flex-col lg:flex-row gap-4">
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 flex-1">
                       <div>
-                        <label className="text-white/70 text-sm mb-2 block">Data Inicial</label>
+                        <label className="text-gray-900/70 text-sm mb-2 block">Data Inicial</label>
                         <Input 
                           type="date" 
-                          className="glass border-white/20 text-white"
+                          className="glass border-white/20 text-gray-900"
                           value={payablesFilters.startDate}
                           onChange={(e) => setPayablesFilters({...payablesFilters, startDate: e.target.value})}
                         />
                       </div>
                       <div>
-                        <label className="text-white/70 text-sm mb-2 block">Data Final</label>
+                        <label className="text-gray-900/70 text-sm mb-2 block">Data Final</label>
                         <Input 
                           type="date" 
-                          className="glass border-white/20 text-white"
+                          className="glass border-white/20 text-gray-900"
                           value={payablesFilters.endDate}
                           onChange={(e) => setPayablesFilters({...payablesFilters, endDate: e.target.value})}
                         />
                       </div>
                       <div>
-                        <label className="text-white/70 text-sm mb-2 block">Cliente</label>
+                        <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                         <Input 
                           placeholder="Cliente..." 
-                          className="glass border-white/20 text-white placeholder:text-white/50"
+                          className="glass border-white/20 text-gray-900 placeholder:text-gray-900/50"
                           value={payablesFilters.client}
                           onChange={(e) => setPayablesFilters({...payablesFilters, client: e.target.value})}
                         />
                       </div>
                       <div>
-                        <label className="text-white/70 text-sm mb-2 block">Vendedor</label>
+                        <label className="text-gray-900/70 text-sm mb-2 block">Vendedor</label>
                         <Input 
                           placeholder="Vendedor..." 
-                          className="glass border-white/20 text-white placeholder:text-white/50"
+                          className="glass border-white/20 text-gray-900 placeholder:text-gray-900/50"
                           value={payablesFilters.vendor}
                           onChange={(e) => setPayablesFilters({...payablesFilters, vendor: e.target.value})}
                         />
@@ -398,13 +398,13 @@ const Financial = () => {
                     <table className="w-full">
                       <thead>
                         <tr className="border-b border-white/10">
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Ação</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Fornecedor</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Descrição</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Data Vencimento</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Valor</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Valor Pago</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Status</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Ação</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Fornecedor</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Descrição</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Data Vencimento</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Valor</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Valor Pago</th>
+                          <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -419,11 +419,11 @@ const Financial = () => {
                                 📋
                               </Button>
                             </td>
-                            <td className="py-4 px-4 text-white">{item.vendor}</td>
-                            <td className="py-4 px-4 text-white/80 max-w-xs truncate">{item.description}</td>
-                            <td className="py-4 px-4 text-white/80">{item.date}</td>
+                            <td className="py-4 px-4 text-gray-900">{item.vendor}</td>
+                            <td className="py-4 px-4 text-gray-900/80 max-w-xs truncate">{item.description}</td>
+                            <td className="py-4 px-4 text-gray-900/80">{item.date}</td>
                             <td className="py-4 px-4 text-red-400 font-medium">{item.value}</td>
-                            <td className="py-4 px-4 text-white/80">R$ 0,00</td>
+                            <td className="py-4 px-4 text-gray-900/80">R$ 0,00</td>
                             <td className="py-4 px-4">
                               <Badge className={`${item.status === 'Pago' ? 'bg-green-500/20 text-green-300 border-green-500/30' : 'bg-red-500/20 text-red-300 border-red-500/30'} border`}>
                                 {item.status}
@@ -437,7 +437,7 @@ const Financial = () => {
 
                   <div className="border-t border-white/10 pt-4">
                     <div className="text-right">
-                      <span className="text-white font-semibold">Total: {calculateTotal(filteredPayables)}</span>
+                      <span className="text-gray-900 font-semibold">Total: {calculateTotal(filteredPayables)}</span>
                     </div>
                   </div>
                 </div>
@@ -446,8 +446,8 @@ const Financial = () => {
               <TabsContent value="alerts" className="space-y-6">
                 <div className="text-center py-12">
                   <AlertTriangle className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-white mb-2">Nenhum aviso de pagamento</h3>
-                  <p className="text-white/60">No data available in table</p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Nenhum aviso de pagamento</h3>
+                  <p className="text-gray-900/60">No data available in table</p>
                 </div>
               </TabsContent>
 
@@ -456,8 +456,8 @@ const Financial = () => {
                   <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Receipt className="w-8 h-8 text-blue-400" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-2">Cobranças</h3>
-                  <p className="text-white/60">Funcionalidade em desenvolvimento</p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Cobranças</h3>
+                  <p className="text-gray-900/60">Funcionalidade em desenvolvimento</p>
                 </div>
               </TabsContent>
 
@@ -479,12 +479,12 @@ const Financial = () => {
 
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-white/70 text-sm mb-2 block">Data Inicial</label>
-                      <Input type="date" className="glass border-white/20 text-white" />
+                      <label className="text-gray-900/70 text-sm mb-2 block">Data Inicial</label>
+                      <Input type="date" className="glass border-white/20 text-gray-900" />
                     </div>
                     <div>
-                      <label className="text-white/70 text-sm mb-2 block">Data Final</label>
-                      <Input type="date" className="glass border-white/20 text-white" />
+                      <label className="text-gray-900/70 text-sm mb-2 block">Data Final</label>
+                      <Input type="date" className="glass border-white/20 text-gray-900" />
                     </div>
                   </div>
 
@@ -492,8 +492,8 @@ const Financial = () => {
                     <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
                       <FileDown className="w-8 h-8 text-purple-400" />
                     </div>
-                    <h3 className="text-xl font-semibold text-white mb-2">Relatório DRE</h3>
-                    <p className="text-white/60">Selecione o período para gerar o relatório</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Relatório DRE</h3>
+                    <p className="text-gray-900/60">Selecione o período para gerar o relatório</p>
                   </div>
                 </div>
               </TabsContent>

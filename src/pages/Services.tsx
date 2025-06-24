@@ -120,8 +120,8 @@ const Services = () => {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
           <div>
-            <h1 className="text-4xl font-bold text-white">Serviços</h1>
-            <p className="text-white/70">Gerencie todos os seus serviços</p>
+            <h1 className="text-4xl font-bold text-gray-900">Serviços</h1>
+            <p className="text-gray-900/70">Gerencie todos os seus serviços</p>
           </div>
           <div className="flex space-x-3">
             <Button className="glass-button" onClick={() => alert('Funcionalidade de cadastro em desenvolvimento')}>
@@ -137,7 +137,7 @@ const Services = () => {
         {/* Filters */}
         <Card className="glass-card border-white/20">
           <CardHeader>
-            <CardTitle className="text-white flex items-center">
+            <CardTitle className="text-gray-900 flex items-center">
               <Filter className="w-5 h-5 mr-2" />
               Filtros
             </CardTitle>
@@ -145,18 +145,18 @@ const Services = () => {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div>
-                <label className="text-white/70 text-sm mb-2 block">Cliente</label>
+                <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                 <Input 
                   placeholder="Buscar cliente..." 
-                  className="glass border-white/20 text-white placeholder:text-white/50"
+                  className="glass border-white/20 text-gray-900 placeholder:text-gray-900/50"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
               <div>
-                <label className="text-white/70 text-sm mb-2 block">Empresa</label>
+                <label className="text-gray-900/70 text-sm mb-2 block">Empresa</label>
                 <Select value={selectedCompany} onValueChange={setSelectedCompany}>
-                  <SelectTrigger className="glass border-white/20 text-white">
+                  <SelectTrigger className="glass border-white/20 text-gray-900">
                     <SelectValue placeholder="Selecione..." />
                   </SelectTrigger>
                   <SelectContent className="glass-card border-white/20 bg-slate-900">
@@ -166,9 +166,9 @@ const Services = () => {
                 </Select>
               </div>
               <div>
-                <label className="text-white/70 text-sm mb-2 block">Status</label>
+                <label className="text-gray-900/70 text-sm mb-2 block">Status</label>
                 <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-                  <SelectTrigger className="glass border-white/20 text-white">
+                  <SelectTrigger className="glass border-white/20 text-gray-900">
                     <SelectValue placeholder="Todos os status" />
                   </SelectTrigger>
                   <SelectContent className="glass-card border-white/20 bg-slate-900">
@@ -179,9 +179,9 @@ const Services = () => {
                 </Select>
               </div>
               <div>
-                <label className="text-white/70 text-sm mb-2 block">Tipo Serviço</label>
+                <label className="text-gray-900/70 text-sm mb-2 block">Tipo Serviço</label>
                 <Select value={selectedServiceType} onValueChange={setSelectedServiceType}>
-                  <SelectTrigger className="glass border-white/20 text-white">
+                  <SelectTrigger className="glass border-white/20 text-gray-900">
                     <SelectValue placeholder="Todos os tipos" />
                   </SelectTrigger>
                   <SelectContent className="glass-card border-white/20 bg-slate-900">
@@ -192,7 +192,7 @@ const Services = () => {
               </div>
             </div>
             <div className="flex justify-end mt-4 space-x-2">
-              <Button variant="outline" className="glass border-white/20 text-white" onClick={handleClearFilters}>
+              <Button variant="outline" className="glass border-white/20 text-gray-900" onClick={handleClearFilters}>
                 Limpar Filtros
               </Button>
               <Button className="glass-button" onClick={handleSearch}>
@@ -206,7 +206,7 @@ const Services = () => {
         {/* Services List */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-white">
+            <h2 className="text-xl font-semibold text-gray-900">
               Serviços Filtrados: <span className="text-blue-400">{filteredServices.length} Registros</span>
             </h2>
             <div className="flex space-x-2">
@@ -219,7 +219,7 @@ const Services = () => {
           {filteredServices.length === 0 ? (
             <Card className="glass-card border-white/20">
               <CardContent className="p-12 text-center">
-                <p className="text-white/60">Nenhum serviço encontrado com os filtros aplicados.</p>
+                <p className="text-gray-900/60">Nenhum serviço encontrado com os filtros aplicados.</p>
               </CardContent>
             </Card>
           ) : (
@@ -234,7 +234,7 @@ const Services = () => {
                     {/* Priority Indicator */}
                     <div className="lg:col-span-1 flex lg:flex-col items-center space-x-2 lg:space-x-0 lg:space-y-2">
                       <div className={`w-3 h-3 rounded-full ${getPriorityColor(service.priority)}`}></div>
-                      <span className="text-white/60 text-sm">#{service.id}</span>
+                      <span className="text-gray-900/60 text-sm">#{service.id}</span>
                     </div>
 
                     {/* Service Info */}
@@ -242,36 +242,36 @@ const Services = () => {
                       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                         <div>
                           <h3 className="text-lg font-semibold text-blue-400">{service.client}</h3>
-                          <p className="text-white/70">{service.company}</p>
-                          <p className="text-white/60 text-sm">{service.service}</p>
+                          <p className="text-gray-900/70">{service.company}</p>
+                          <p className="text-gray-900/60 text-sm">{service.service}</p>
                         </div>
                         <Badge className={`${getStatusColor(service.status)} border`}>
                           {service.status}
                         </Badge>
                       </div>
                       
-                      <p className="text-white/80">{service.description}</p>
+                      <p className="text-gray-900/80">{service.description}</p>
                       
                       <div className="flex flex-wrap gap-4 text-sm">
                         <div>
-                          <span className="text-white/60">Valor: </span>
-                          <span className="text-white font-medium">{service.value}</span>
+                          <span className="text-gray-900/60">Valor: </span>
+                          <span className="text-gray-900 font-medium">{service.value}</span>
                         </div>
                         <div>
-                          <span className="text-white/60">Vl. Serviço: </span>
+                          <span className="text-gray-900/60">Vl. Serviço: </span>
                           <span className="text-green-400 font-medium">{service.serviceValue}</span>
                         </div>
                         <div>
-                          <span className="text-white/60">Dias: </span>
-                          <span className="text-white font-medium">{service.days}</span>
+                          <span className="text-gray-900/60">Dias: </span>
+                          <span className="text-gray-900 font-medium">{service.days}</span>
                         </div>
                       </div>
 
                       {/* Progress Bar */}
                       <div className="space-y-1">
                         <div className="flex justify-between text-sm">
-                          <span className="text-white/60">Progresso</span>
-                          <span className="text-white/60">{service.progress}%</span>
+                          <span className="text-gray-900/60">Progresso</span>
+                          <span className="text-gray-900/60">{service.progress}%</span>
                         </div>
                         <div className="w-full bg-white/10 rounded-full h-2">
                           <div 
@@ -291,7 +291,7 @@ const Services = () => {
                       >
                         Ver Detalhes
                       </Button>
-                      <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-white/10">
+                      <Button variant="ghost" size="icon" className="text-gray-900/60 hover:text-gray-900 hover:bg-white/10">
                         <MoreHorizontal className="w-4 h-4" />
                       </Button>
                     </div>

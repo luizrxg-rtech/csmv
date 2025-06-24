@@ -122,8 +122,8 @@ const Clients = () => {
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
           <div>
-            <h1 className="text-4xl font-bold text-white">Buscar Cliente</h1>
-            <p className="text-white/70">Gerencie sua base de clientes</p>
+            <h1 className="text-4xl font-bold text-gray-900">Buscar Cliente</h1>
+            <p className="text-gray-900/70">Gerencie sua base de clientes</p>
           </div>
           <div className="flex space-x-3">
             <Button 
@@ -153,7 +153,7 @@ const Clients = () => {
                       placeholder="Pesquisar clientes..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="glass border-white/20 text-white placeholder:text-white/50"
+                      className="glass border-white/20 text-gray-900 placeholder:text-gray-900/50"
                       onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                     />
                   </div>
@@ -167,8 +167,8 @@ const Clients = () => {
           
           <Card className="glass-card border-white/20">
             <CardContent className="p-6 text-center">
-              <div className="text-2xl font-bold text-white">{filteredClients.length}</div>
-              <div className="text-white/60 text-sm">Clientes Encontrados</div>
+              <div className="text-2xl font-bold text-gray-900">{filteredClients.length}</div>
+              <div className="text-gray-900/60 text-sm">Clientes Encontrados</div>
             </CardContent>
           </Card>
         </div>
@@ -176,27 +176,27 @@ const Clients = () => {
         {/* Clients Table */}
         <Card className="glass-card border-white/20">
           <CardHeader>
-            <CardTitle className="text-white">Lista de Clientes</CardTitle>
-            <div className="text-white/60 text-sm">
+            <CardTitle className="text-gray-900">Lista de Clientes</CardTitle>
+            <div className="text-gray-900/60 text-sm">
               Mostrando {filteredClients.length} registros {searchTerm && `para "${searchTerm}"`}
             </div>
           </CardHeader>
           <CardContent>
             {filteredClients.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-white/60">Nenhum cliente encontrado.</p>
+                <p className="text-gray-900/60">Nenhum cliente encontrado.</p>
               </div>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-white/10">
-                      <th className="text-left py-3 px-4 text-white/70 font-medium">Ações</th>
-                      <th className="text-left py-3 px-4 text-white/70 font-medium">Nome</th>
-                      <th className="text-left py-3 px-4 text-white/70 font-medium">Telefone</th>
-                      <th className="text-left py-3 px-4 text-white/70 font-medium">Email</th>
-                      <th className="text-left py-3 px-4 text-white/70 font-medium">Localização</th>
-                      <th className="text-left py-3 px-4 text-white/70 font-medium">Status</th>
+                      <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Ações</th>
+                      <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Nome</th>
+                      <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Telefone</th>
+                      <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Email</th>
+                      <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Localização</th>
+                      <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -226,22 +226,22 @@ const Clients = () => {
                           </div>
                         </td>
                         <td className="py-4 px-4">
-                          <div className="font-medium text-white">{client.name}</div>
+                          <div className="font-medium text-gray-900">{client.name}</div>
                         </td>
                         <td className="py-4 px-4">
-                          <div className="flex items-center text-white/80">
+                          <div className="flex items-center text-gray-900/80">
                             <Phone className="w-4 h-4 mr-2 text-blue-400" />
                             {client.phone}
                           </div>
                         </td>
                         <td className="py-4 px-4">
-                          <div className="flex items-center text-white/80">
+                          <div className="flex items-center text-gray-900/80">
                             <Mail className="w-4 h-4 mr-2 text-green-400" />
                             {client.email}
                           </div>
                         </td>
                         <td className="py-4 px-4">
-                          <div className="flex items-center text-white/80">
+                          <div className="flex items-center text-gray-900/80">
                             <MapPin className="w-4 h-4 mr-2 text-purple-400" />
                             {client.city}, {client.state}
                           </div>
@@ -261,23 +261,23 @@ const Clients = () => {
             {/* Pagination - Mockada */}
             {filteredClients.length > 0 && (
               <div className="flex items-center justify-between mt-6 pt-4 border-t border-white/10">
-                <div className="text-white/60 text-sm">
+                <div className="text-gray-900/60 text-sm">
                   Página 1 de 1
                 </div>
                 <div className="flex space-x-2">
-                  <Button variant="outline" size="sm" className="glass border-white/20 text-white" disabled>
+                  <Button variant="outline" size="sm" className="glass border-white/20 text-gray-900" disabled>
                     Primeiro
                   </Button>
-                  <Button variant="outline" size="sm" className="glass border-white/20 text-white" disabled>
+                  <Button variant="outline" size="sm" className="glass border-white/20 text-gray-900" disabled>
                     Anterior
                   </Button>
                   <Button variant="default" size="sm" className="glass-button">
                     1
                   </Button>
-                  <Button variant="outline" size="sm" className="glass border-white/20 text-white" disabled>
+                  <Button variant="outline" size="sm" className="glass border-white/20 text-gray-900" disabled>
                     Próxima
                   </Button>
-                  <Button variant="outline" size="sm" className="glass border-white/20 text-white" disabled>
+                  <Button variant="outline" size="sm" className="glass border-white/20 text-gray-900" disabled>
                     Última
                   </Button>
                 </div>
