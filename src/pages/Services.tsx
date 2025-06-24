@@ -98,10 +98,10 @@ const Services = () => {
 
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
-      case 'em análise': return 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30';
-      case 'em acolhimento': return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
-      case 'finalizado': return 'bg-green-500/20 text-green-300 border-green-500/30';
-      default: return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
+      case 'em análise': return 'bg-yellow-500/20 text-yellow-700 border-yellow-500/30';
+      case 'em acolhimento': return 'bg-blue-500/20 text-blue-700 border-blue-500/30';
+      case 'finalizado': return 'bg-green-500/20 text-green-700 border-green-500/30';
+      default: return 'bg-gray-500/20 text-gray-700 border-gray-500/30';
     }
   };
 
@@ -209,11 +209,6 @@ const Services = () => {
             <h2 className="text-xl font-semibold text-gray-900">
               Serviços Filtrados: <span className="text-blue-400">{filteredServices.length} Registros</span>
             </h2>
-            <div className="flex space-x-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-            </div>
           </div>
 
           {filteredServices.length === 0 ? (

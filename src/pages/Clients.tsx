@@ -1,11 +1,10 @@
-
 import DashboardLayout from '@/components/DashboardLayout';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Plus, Search, MoreHorizontal, Phone, Mail, MapPin } from 'lucide-react';
-import { useState } from 'react';
+import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
+import {Button} from '@/components/ui/button';
+import {Input} from '@/components/ui/input';
+import {Badge} from '@/components/ui/badge';
+import {Eye, Mail, MapPin, Phone, Plus, Search, Trash2} from 'lucide-react';
+import {useState} from 'react';
 
 const Clients = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -86,9 +85,9 @@ const Clients = () => {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'active': return 'bg-green-500/20 text-green-300 border-green-500/30';
-      case 'inactive': return 'bg-red-500/20 text-red-300 border-red-500/30';
-      case 'pending': return 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30';
+      case 'active': return 'bg-green-500/20 text-green-700 border-green-500/30';
+      case 'inactive': return 'bg-red-500/20 text-red-700 border-red-500/30';
+      case 'pending': return 'bg-yellow-500/20 text-yellow-700 border-yellow-500/30';
       default: return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
     }
   };
@@ -213,7 +212,7 @@ const Clients = () => {
                               className="bg-green-600 hover:bg-green-700 text-white px-3"
                               onClick={() => handleClientAction(client.id, 'activate')}
                             >
-                              ✓
+                              <Eye />
                             </Button>
                             <Button 
                               size="sm" 
@@ -221,7 +220,7 @@ const Clients = () => {
                               className="px-3"
                               onClick={() => handleClientAction(client.id, 'deactivate')}
                             >
-                              ✕
+                              <Trash2 />
                             </Button>
                           </div>
                         </td>

@@ -33,7 +33,7 @@ const AppSidebar = () => {
           <div className="p-6 border-b border-green-200">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
-                <Building2 className="w-6 h-6 text-gray-900" />
+                <Building2 className="w-6 h-6 text-white" />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-green-900">CSMV</h1>

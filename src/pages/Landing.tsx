@@ -47,13 +47,13 @@ const Landing = () => {
         <div className="space-y-8 animate-fade-in">
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Wheat className="w-8 h-8 text-green-600" />
+              <Wheat className="w-12 h-12 text-green-600" />
               <h1 className="text-4xl lg:text-6xl font-bold text-green-900">
                 CSMV
               </h1>
             </div>
             <p className="text-xl lg:text-2xl text-green-800 font-light">
-              Solução White-Label para Agronegócio
+              Solução Digital para Agronegócio
             </p>
             <p className="text-lg text-green-700 max-w-md">
               Plataforma completa e personalizável para gestão do agronegócio, adaptável às necessidades da sua empresa.
@@ -62,7 +62,7 @@ const Landing = () => {
 
           {/* Features */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="glass-card p-6 border-green-200/40 space-y-3">
+            <div className="glass-card p-6 border-green-200/40 rounded-2xl space-y-3">
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                 <Users className="w-6 h-6 text-green-600" />
               </div>
@@ -72,7 +72,7 @@ const Landing = () => {
               </p>
             </div>
 
-            <div className="glass-card p-6 border-green-200/40 space-y-3">
+            <div className="glass-card p-6 border-green-200/40 rounded-2xl space-y-3">
               <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
                 <Tractor className="w-6 h-6 text-emerald-600" />
               </div>
@@ -82,7 +82,7 @@ const Landing = () => {
               </p>
             </div>
 
-            <div className="glass-card p-6 border-green-200/40 space-y-3">
+            <div className="glass-card p-6 border-green-200/40 rounded-2xl space-y-3">
               <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center">
                 <CreditCard className="w-6 h-6 text-teal-600" />
               </div>
@@ -92,7 +92,7 @@ const Landing = () => {
               </p>
             </div>
 
-            <div className="glass-card p-6 border-green-200/40 space-y-3">
+            <div className="glass-card p-6 border-green-200/40 rounded-2xl space-y-3">
               <div className="w-12 h-12 bg-lime-100 rounded-full flex items-center justify-center">
                 <BarChart3 className="w-6 h-6 text-lime-600" />
               </div>
