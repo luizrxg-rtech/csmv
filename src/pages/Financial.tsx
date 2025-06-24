@@ -1,4 +1,3 @@
-
 import DashboardLayout from '@/components/DashboardLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -9,9 +8,20 @@ import { Plus, Search, Calendar, TrendingUp, TrendingDown, Eye, FileDown, AlertT
 import { useState } from 'react';
 
 const Financial = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [receivablesFilters, setReceivablesFilters] = useState({
+    startDate: '',
+    endDate: '',
+    client: ''
+  });
 
-  const receivables = [
+  const [payablesFilters, setPayablesFilters] = useState({
+    startDate: '',
+    endDate: '',
+    client: '',
+    vendor: ''
+  });
+
+  const allReceivables = [
     {
       id: 1,
       client: 'Kamila Luisa Costa',
@@ -42,11 +52,11 @@ const Financial = () => {
       description: '#013765 -> #006349 - CPR - Bradesco S.A',
       value: 'R$ 13.000,00',
       date: '16/06/2025',
-      status: 'Pendente'
+      status: 'Pago'
     }
   ];
 
-  const payables = [
+  const allPayables = [
     {
       id: 1,
       vendor: 'AgroAliado TESTE',
@@ -69,17 +79,61 @@ const Financial = () => {
       description: '#013767 -> #006349 - Comissão de serviço - (6349) CPR - Bradesco S.A',
       value: 'R$ 6.500,00',
       date: '10/07/2025',
-      status: 'Pendente'
+      status: 'Pago'
     },
     {
       id: 4,
       vendor: 'AgroAliado TESTE',
       description: '#013758 -> #006214 - Comissão de serviço - (6214) Crédito Rural - 123123',
       value: 'R$ 1,00',
-      date: '00/00/0000',
+      date: '27/06/2025',
       status: 'Pendente'
     }
   ];
+
+  const filteredReceivables = allReceivables.filter(item => {
+    const matchesClient = !receivablesFilters.client || 
+      item.client.toLowerCase().includes(receivablesFilters.client.toLowerCase());
+    
+    return matchesClient;
+  });
+
+  const filteredPayables = allPayables.filter(item => {
+    const matchesClient = !payablesFilters.client || 
+      item.description.toLowerCase().includes(payablesFilters.client.toLowerCase());
+    
+    const matchesVendor = !payablesFilters.vendor || 
+      item.vendor.toLowerCase().includes(payablesFilters.vendor.toLowerCase());
+    
+    return matchesClient && matchesVendor;
+  });
+
+  const handleReceivablesSearch = () => {
+    console.log('Busca de recebíveis com filtros:', receivablesFilters);
+  };
+
+  const handlePayablesSearch = () => {
+    console.log('Busca de pagáveis com filtros:', payablesFilters);
+  };
+
+  const handleGenerateReceipt = () => {
+    alert('Gerando recibo...');
+  };
+
+  const handleMarkItems = () => {
+    alert('Itens marcados!');
+  };
+
+  const handleUnmarkItems = () => {
+    alert('Itens desmarcados!');
+  };
+
+  const calculateTotal = (items: any[]) => {
+    return items.reduce((total, item) => {
+      const value = parseFloat(item.value.replace('R$ ', '').replace('.', '').replace(',', '.'));
+      return total + value;
+    }, 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  };
 
   return (
     <DashboardLayout>
@@ -91,7 +145,10 @@ const Financial = () => {
             <p className="text-white/70">Controle suas finanças e fluxo de caixa</p>
           </div>
           <div className="flex space-x-3">
-            <Button className="glass-button">
+            <Button 
+              className="glass-button"
+              onClick={() => alert('Funcionalidade de cadastro em desenvolvimento')}
+            >
               <Plus className="w-4 h-4 mr-2" />
               Cadastrar
             </Button>
@@ -128,7 +185,7 @@ const Financial = () => {
               <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <TrendingUp className="w-6 h-6 text-green-400" />
               </div>
-              <div className="text-xl font-bold text-white">R$ 0,00</div>
+              <div className="text-xl font-bold text-white">{calculateTotal(filteredReceivables)}</div>
               <div className="text-white/60 text-sm">Receita Prevista</div>
             </CardContent>
           </Card>
@@ -148,7 +205,7 @@ const Financial = () => {
               <div className="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Eye className="w-6 h-6 text-purple-400" />
               </div>
-              <div className="text-xl font-bold text-white">R$ 0,00</div>
+              <div className="text-xl font-bold text-white">{calculateTotal(filteredPayables)}</div>
               <div className="text-white/60 text-sm">Despesas Prevista</div>
             </CardContent>
           </Card>
@@ -186,19 +243,34 @@ const Financial = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 flex-1">
                       <div>
                         <label className="text-white/70 text-sm mb-2 block">Data Inicial</label>
-                        <Input type="date" className="glass border-white/20 text-white" />
+                        <Input 
+                          type="date" 
+                          className="glass border-white/20 text-white"
+                          value={receivablesFilters.startDate}
+                          onChange={(e) => setReceivablesFilters({...receivablesFilters, startDate: e.target.value})}
+                        />
                       </div>
                       <div>
                         <label className="text-white/70 text-sm mb-2 block">Data Final</label>
-                        <Input type="date" className="glass border-white/20 text-white" />
+                        <Input 
+                          type="date" 
+                          className="glass border-white/20 text-white"
+                          value={receivablesFilters.endDate}
+                          onChange={(e) => setReceivablesFilters({...receivablesFilters, endDate: e.target.value})}
+                        />
                       </div>
                       <div>
                         <label className="text-white/70 text-sm mb-2 block">Cliente</label>
-                        <Input placeholder="Pesquisar cliente..." className="glass border-white/20 text-white placeholder:text-white/50" />
+                        <Input 
+                          placeholder="Pesquisar cliente..." 
+                          className="glass border-white/20 text-white placeholder:text-white/50"
+                          value={receivablesFilters.client}
+                          onChange={(e) => setReceivablesFilters({...receivablesFilters, client: e.target.value})}
+                        />
                       </div>
                     </div>
                     <div className="flex space-x-2 items-end">
-                      <Button className="glass-button">
+                      <Button className="glass-button" onClick={handleReceivablesSearch}>
                         <Search className="w-4 h-4 mr-2" />
                         Pesquisar
                       </Button>
@@ -207,13 +279,13 @@ const Financial = () => {
 
                   {/* Generate Actions */}
                   <div className="flex space-x-2">
-                    <Button className="glass-button">
+                    <Button className="glass-button" onClick={handleGenerateReceipt}>
                       📄 Gerar Recibo
                     </Button>
-                    <Button className="glass-button">
+                    <Button className="glass-button" onClick={handleMarkItems}>
                       ✓ Marcar
                     </Button>
-                    <Button className="glass-button">
+                    <Button className="glass-button" onClick={handleUnmarkItems}>
                       ❌ Desmarcar
                     </Button>
                   </div>
@@ -233,10 +305,14 @@ const Financial = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {receivables.map((item, index) => (
+                        {filteredReceivables.map((item, index) => (
                           <tr key={item.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                             <td className="py-4 px-4">
-                              <Button size="sm" className="glass-button px-3">
+                              <Button 
+                                size="sm" 
+                                className="glass-button px-3"
+                                onClick={() => alert(`Visualizando detalhes da conta ${item.id}`)}
+                              >
                                 📋
                               </Button>
                             </td>
@@ -246,7 +322,7 @@ const Financial = () => {
                             <td className="py-4 px-4 text-green-400 font-medium">{item.value}</td>
                             <td className="py-4 px-4 text-white/80">R$ 0,00</td>
                             <td className="py-4 px-4">
-                              <Badge className="bg-red-500/20 text-red-300 border-red-500/30 border">
+                              <Badge className={`${item.status === 'Pago' ? 'bg-green-500/20 text-green-300 border-green-500/30' : 'bg-red-500/20 text-red-300 border-red-500/30'} border`}>
                                 {item.status}
                               </Badge>
                             </td>
@@ -258,7 +334,7 @@ const Financial = () => {
 
                   <div className="border-t border-white/10 pt-4">
                     <div className="text-right">
-                      <span className="text-white font-semibold">Total: R$ 39.002,00</span>
+                      <span className="text-white font-semibold">Total: {calculateTotal(filteredReceivables)}</span>
                     </div>
                   </div>
                 </div>
@@ -274,23 +350,43 @@ const Financial = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 flex-1">
                       <div>
                         <label className="text-white/70 text-sm mb-2 block">Data Inicial</label>
-                        <Input type="date" className="glass border-white/20 text-white" />
+                        <Input 
+                          type="date" 
+                          className="glass border-white/20 text-white"
+                          value={payablesFilters.startDate}
+                          onChange={(e) => setPayablesFilters({...payablesFilters, startDate: e.target.value})}
+                        />
                       </div>
                       <div>
                         <label className="text-white/70 text-sm mb-2 block">Data Final</label>
-                        <Input type="date" className="glass border-white/20 text-white" />
+                        <Input 
+                          type="date" 
+                          className="glass border-white/20 text-white"
+                          value={payablesFilters.endDate}
+                          onChange={(e) => setPayablesFilters({...payablesFilters, endDate: e.target.value})}
+                        />
                       </div>
                       <div>
                         <label className="text-white/70 text-sm mb-2 block">Cliente</label>
-                        <Input placeholder="Cliente..." className="glass border-white/20 text-white placeholder:text-white/50" />
+                        <Input 
+                          placeholder="Cliente..." 
+                          className="glass border-white/20 text-white placeholder:text-white/50"
+                          value={payablesFilters.client}
+                          onChange={(e) => setPayablesFilters({...payablesFilters, client: e.target.value})}
+                        />
                       </div>
                       <div>
                         <label className="text-white/70 text-sm mb-2 block">Vendedor</label>
-                        <Input placeholder="Vendedor..." className="glass border-white/20 text-white placeholder:text-white/50" />
+                        <Input 
+                          placeholder="Vendedor..." 
+                          className="glass border-white/20 text-white placeholder:text-white/50"
+                          value={payablesFilters.vendor}
+                          onChange={(e) => setPayablesFilters({...payablesFilters, vendor: e.target.value})}
+                        />
                       </div>
                     </div>
                     <div className="flex items-end">
-                      <Button className="glass-button">
+                      <Button className="glass-button" onClick={handlePayablesSearch}>
                         <Search className="w-4 h-4 mr-2" />
                         Pesquisar
                       </Button>
@@ -303,7 +399,7 @@ const Financial = () => {
                       <thead>
                         <tr className="border-b border-white/10">
                           <th className="text-left py-3 px-4 text-white/70 font-medium">Ação</th>
-                          <th className="text-left py-3 px-4 text-white/70 font-medium">Cliente</th>
+                          <th className="text-left py-3 px-4 text-white/70 font-medium">Fornecedor</th>
                           <th className="text-left py-3 px-4 text-white/70 font-medium">Descrição</th>
                           <th className="text-left py-3 px-4 text-white/70 font-medium">Data Vencimento</th>
                           <th className="text-left py-3 px-4 text-white/70 font-medium">Valor</th>
@@ -312,10 +408,14 @@ const Financial = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {payables.map((item, index) => (
+                        {filteredPayables.map((item, index) => (
                           <tr key={item.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                             <td className="py-4 px-4">
-                              <Button size="sm" className="glass-button px-3">
+                              <Button 
+                                size="sm" 
+                                className="glass-button px-3"
+                                onClick={() => alert(`Visualizando detalhes da conta ${item.id}`)}
+                              >
                                 📋
                               </Button>
                             </td>
@@ -325,7 +425,7 @@ const Financial = () => {
                             <td className="py-4 px-4 text-red-400 font-medium">{item.value}</td>
                             <td className="py-4 px-4 text-white/80">R$ 0,00</td>
                             <td className="py-4 px-4">
-                              <Badge className="bg-red-500/20 text-red-300 border-red-500/30 border">
+                              <Badge className={`${item.status === 'Pago' ? 'bg-green-500/20 text-green-300 border-green-500/30' : 'bg-red-500/20 text-red-300 border-red-500/30'} border`}>
                                 {item.status}
                               </Badge>
                             </td>
@@ -337,13 +437,12 @@ const Financial = () => {
 
                   <div className="border-t border-white/10 pt-4">
                     <div className="text-right">
-                      <span className="text-white font-semibold">Total: R$ 19.501,00</span>
+                      <span className="text-white font-semibold">Total: {calculateTotal(filteredPayables)}</span>
                     </div>
                   </div>
                 </div>
               </TabsContent>
 
-              {/* Payment Alerts Tab */}
               <TabsContent value="alerts" className="space-y-6">
                 <div className="text-center py-12">
                   <AlertTriangle className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
@@ -352,7 +451,6 @@ const Financial = () => {
                 </div>
               </TabsContent>
 
-              {/* Collections Tab */}
               <TabsContent value="collections" className="space-y-6">
                 <div className="text-center py-12">
                   <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -363,7 +461,6 @@ const Financial = () => {
                 </div>
               </TabsContent>
 
-              {/* DRE Report Tab */}
               <TabsContent value="reports" className="space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">

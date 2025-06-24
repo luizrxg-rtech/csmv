@@ -10,7 +10,7 @@ import { useState } from 'react';
 const Clients = () => {
   const [searchTerm, setSearchTerm] = useState('');
   
-  const clients = [
+  const allClients = [
     {
       id: 1,
       name: 'Aglailton',
@@ -76,6 +76,14 @@ const Clients = () => {
     }
   ];
 
+  const filteredClients = allClients.filter(client =>
+    client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    client.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    client.phone.includes(searchTerm) ||
+    client.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    client.state.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active': return 'bg-green-500/20 text-green-300 border-green-500/30';
@@ -94,11 +102,19 @@ const Clients = () => {
     }
   };
 
-  const filteredClients = clients.filter(client =>
-    client.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    client.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    client.phone.includes(searchTerm)
-  );
+  const handleSearch = () => {
+    console.log('Busca realizada para:', searchTerm);
+  };
+
+  const handleClientAction = (clientId: number, action: 'activate' | 'deactivate') => {
+    console.log(`Ação ${action} executada para cliente ${clientId}`);
+    alert(`Cliente ${action === 'activate' ? 'ativado' : 'desativado'} com sucesso!`);
+  };
+
+  const handleReloadList = () => {
+    console.log('Lista de clientes recarregada');
+    alert('Lista recarregada com sucesso!');
+  };
 
   return (
     <DashboardLayout>
@@ -110,11 +126,17 @@ const Clients = () => {
             <p className="text-white/70">Gerencie sua base de clientes</p>
           </div>
           <div className="flex space-x-3">
-            <Button className="glass-button">
+            <Button 
+              className="glass-button"
+              onClick={() => alert('Funcionalidade de cadastro em desenvolvimento')}
+            >
               <Plus className="w-4 h-4 mr-2" />
               Cadastrar Novo Cliente
             </Button>
-            <Button className="bg-green-600 hover:bg-green-700 text-white">
+            <Button 
+              className="bg-green-600 hover:bg-green-700 text-white"
+              onClick={handleReloadList}
+            >
               Recarregar Lista
             </Button>
           </div>
@@ -132,9 +154,10 @@ const Clients = () => {
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       className="glass border-white/20 text-white placeholder:text-white/50"
+                      onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                     />
                   </div>
-                  <Button className="glass-button">
+                  <Button className="glass-button" onClick={handleSearch}>
                     <Search className="w-4 h-4" />
                   </Button>
                 </div>
@@ -145,7 +168,7 @@ const Clients = () => {
           <Card className="glass-card border-white/20">
             <CardContent className="p-6 text-center">
               <div className="text-2xl font-bold text-white">{filteredClients.length}</div>
-              <div className="text-white/60 text-sm">Total de Clientes</div>
+              <div className="text-white/60 text-sm">Clientes Encontrados</div>
             </CardContent>
           </Card>
         </div>
@@ -155,101 +178,111 @@ const Clients = () => {
           <CardHeader>
             <CardTitle className="text-white">Lista de Clientes</CardTitle>
             <div className="text-white/60 text-sm">
-              Mostrando {filteredClients.length} registros por página • Página 4 de 84
+              Mostrando {filteredClients.length} registros {searchTerm && `para "${searchTerm}"`}
             </div>
           </CardHeader>
           <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="text-left py-3 px-4 text-white/70 font-medium">Ações</th>
-                    <th className="text-left py-3 px-4 text-white/70 font-medium">Nome</th>
-                    <th className="text-left py-3 px-4 text-white/70 font-medium">Telefone</th>
-                    <th className="text-left py-3 px-4 text-white/70 font-medium">Email</th>
-                    <th className="text-left py-3 px-4 text-white/70 font-medium">Localização</th>
-                    <th className="text-left py-3 px-4 text-white/70 font-medium">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredClients.map((client, index) => (
-                    <tr 
-                      key={client.id} 
-                      className="border-b border-white/5 hover:bg-white/5 transition-colors animate-fade-in"
-                      style={{ animationDelay: `${index * 0.05}s` }}
-                    >
-                      <td className="py-4 px-4">
-                        <div className="flex space-x-2">
-                          <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white px-3">
-                            ✓
-                          </Button>
-                          <Button size="sm" variant="destructive" className="px-3">
-                            ✕
-                          </Button>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4">
-                        <div className="font-medium text-white">{client.name}</div>
-                      </td>
-                      <td className="py-4 px-4">
-                        <div className="flex items-center text-white/80">
-                          <Phone className="w-4 h-4 mr-2 text-blue-400" />
-                          {client.phone}
-                        </div>
-                      </td>
-                      <td className="py-4 px-4">
-                        <div className="flex items-center text-white/80">
-                          <Mail className="w-4 h-4 mr-2 text-green-400" />
-                          {client.email}
-                        </div>
-                      </td>
-                      <td className="py-4 px-4">
-                        <div className="flex items-center text-white/80">
-                          <MapPin className="w-4 h-4 mr-2 text-purple-400" />
-                          {client.city}, {client.state}
-                        </div>
-                      </td>
-                      <td className="py-4 px-4">
-                        <Badge className={`${getStatusColor(client.status)} border`}>
-                          {getStatusText(client.status)}
-                        </Badge>
-                      </td>
+            {filteredClients.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-white/60">Nenhum cliente encontrado.</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-white/10">
+                      <th className="text-left py-3 px-4 text-white/70 font-medium">Ações</th>
+                      <th className="text-left py-3 px-4 text-white/70 font-medium">Nome</th>
+                      <th className="text-left py-3 px-4 text-white/70 font-medium">Telefone</th>
+                      <th className="text-left py-3 px-4 text-white/70 font-medium">Email</th>
+                      <th className="text-left py-3 px-4 text-white/70 font-medium">Localização</th>
+                      <th className="text-left py-3 px-4 text-white/70 font-medium">Status</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {filteredClients.map((client, index) => (
+                      <tr 
+                        key={client.id} 
+                        className="border-b border-white/5 hover:bg-white/5 transition-colors animate-fade-in"
+                        style={{ animationDelay: `${index * 0.05}s` }}
+                      >
+                        <td className="py-4 px-4">
+                          <div className="flex space-x-2">
+                            <Button 
+                              size="sm" 
+                              className="bg-green-600 hover:bg-green-700 text-white px-3"
+                              onClick={() => handleClientAction(client.id, 'activate')}
+                            >
+                              ✓
+                            </Button>
+                            <Button 
+                              size="sm" 
+                              variant="destructive" 
+                              className="px-3"
+                              onClick={() => handleClientAction(client.id, 'deactivate')}
+                            >
+                              ✕
+                            </Button>
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="font-medium text-white">{client.name}</div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center text-white/80">
+                            <Phone className="w-4 h-4 mr-2 text-blue-400" />
+                            {client.phone}
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center text-white/80">
+                            <Mail className="w-4 h-4 mr-2 text-green-400" />
+                            {client.email}
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center text-white/80">
+                            <MapPin className="w-4 h-4 mr-2 text-purple-400" />
+                            {client.city}, {client.state}
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
+                          <Badge className={`${getStatusColor(client.status)} border`}>
+                            {getStatusText(client.status)}
+                          </Badge>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
 
-            {/* Pagination */}
-            <div className="flex items-center justify-between mt-6 pt-4 border-t border-white/10">
-              <div className="text-white/60 text-sm">
-                Página 4 de 84
-              </div>
-              <div className="flex space-x-2">
-                <Button variant="outline" size="sm" className="glass border-white/20 text-white">
-                  Primeiro
-                </Button>
-                <Button variant="outline" size="sm" className="glass border-white/20 text-white">
-                  Anterior
-                </Button>
-                {[1, 2, 3, 4, 5].map((page) => (
-                  <Button
-                    key={page}
-                    variant={page === 4 ? "default" : "outline"}
-                    size="sm"
-                    className={page === 4 ? "glass-button" : "glass border-white/20 text-white"}
-                  >
-                    {page}
+            {/* Pagination - Mockada */}
+            {filteredClients.length > 0 && (
+              <div className="flex items-center justify-between mt-6 pt-4 border-t border-white/10">
+                <div className="text-white/60 text-sm">
+                  Página 1 de 1
+                </div>
+                <div className="flex space-x-2">
+                  <Button variant="outline" size="sm" className="glass border-white/20 text-white" disabled>
+                    Primeiro
                   </Button>
-                ))}
-                <Button variant="outline" size="sm" className="glass border-white/20 text-white">
-                  Próxima
-                </Button>
-                <Button variant="outline" size="sm" className="glass border-white/20 text-white">
-                  Última
-                </Button>
+                  <Button variant="outline" size="sm" className="glass border-white/20 text-white" disabled>
+                    Anterior
+                  </Button>
+                  <Button variant="default" size="sm" className="glass-button">
+                    1
+                  </Button>
+                  <Button variant="outline" size="sm" className="glass border-white/20 text-white" disabled>
+                    Próxima
+                  </Button>
+                  <Button variant="outline" size="sm" className="glass border-white/20 text-white" disabled>
+                    Última
+                  </Button>
+                </div>
               </div>
-            </div>
+            )}
           </CardContent>
         </Card>
       </div>

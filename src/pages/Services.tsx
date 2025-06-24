@@ -10,8 +10,11 @@ import { useState } from 'react';
 
 const Services = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCompany, setSelectedCompany] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('');
+  const [selectedServiceType, setSelectedServiceType] = useState('');
   
-  const services = [
+  const allServices = [
     {
       id: '006349',
       client: 'Jair Ronaldo Vicente',
@@ -53,8 +56,45 @@ const Services = () => {
       days: 28,
       priority: 'low',
       progress: 10
+    },
+    {
+      id: '006350',
+      client: 'Maria Silva',
+      company: 'Nordeste S.A',
+      service: 'CPR',
+      description: 'Solicitação de crédito rural para plantio',
+      status: 'Finalizado',
+      value: 'R$ 500.000,00',
+      serviceValue: 'R$ 10.000,00',
+      date: '25/05/2025',
+      days: 30,
+      priority: 'medium',
+      progress: 100
     }
   ];
+
+  const filteredServices = allServices.filter(service => {
+    const matchesSearch = service.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         service.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         service.id.includes(searchTerm);
+    
+    const matchesCompany = !selectedCompany || service.company === selectedCompany;
+    const matchesStatus = !selectedStatus || service.status === selectedStatus;
+    const matchesServiceType = !selectedServiceType || service.service === selectedServiceType;
+    
+    return matchesSearch && matchesCompany && matchesStatus && matchesServiceType;
+  });
+
+  const handleSearch = () => {
+    console.log('Busca realizada com os filtros:', { searchTerm, selectedCompany, selectedStatus, selectedServiceType });
+  };
+
+  const handleClearFilters = () => {
+    setSearchTerm('');
+    setSelectedCompany('');
+    setSelectedStatus('');
+    setSelectedServiceType('');
+  };
 
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
@@ -84,7 +124,7 @@ const Services = () => {
             <p className="text-white/70">Gerencie todos os seus serviços</p>
           </div>
           <div className="flex space-x-3">
-            <Button className="glass-button">
+            <Button className="glass-button" onClick={() => alert('Funcionalidade de cadastro em desenvolvimento')}>
               <Plus className="w-4 h-4 mr-2" />
               Cadastrar Serviços
             </Button>
@@ -115,44 +155,47 @@ const Services = () => {
               </div>
               <div>
                 <label className="text-white/70 text-sm mb-2 block">Empresa</label>
-                <Select>
+                <Select value={selectedCompany} onValueChange={setSelectedCompany}>
                   <SelectTrigger className="glass border-white/20 text-white">
                     <SelectValue placeholder="Selecione..." />
                   </SelectTrigger>
-                  <SelectContent className="glass-card border-white/20">
-                    <SelectItem value="bradesco">Bradesco S.A</SelectItem>
-                    <SelectItem value="nordeste">Nordeste S.A</SelectItem>
+                  <SelectContent className="glass-card border-white/20 bg-slate-900">
+                    <SelectItem value="Bradesco S.A">Bradesco S.A</SelectItem>
+                    <SelectItem value="Nordeste S.A">Nordeste S.A</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div>
                 <label className="text-white/70 text-sm mb-2 block">Status</label>
-                <Select>
+                <Select value={selectedStatus} onValueChange={setSelectedStatus}>
                   <SelectTrigger className="glass border-white/20 text-white">
                     <SelectValue placeholder="Todos os status" />
                   </SelectTrigger>
-                  <SelectContent className="glass-card border-white/20">
-                    <SelectItem value="analise">Em Análise</SelectItem>
-                    <SelectItem value="acolhimento">Em acolhimento</SelectItem>
-                    <SelectItem value="finalizado">Finalizado</SelectItem>
+                  <SelectContent className="glass-card border-white/20 bg-slate-900">
+                    <SelectItem value="Em Análise">Em Análise</SelectItem>
+                    <SelectItem value="Em acolhimento">Em acolhimento</SelectItem>
+                    <SelectItem value="Finalizado">Finalizado</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div>
                 <label className="text-white/70 text-sm mb-2 block">Tipo Serviço</label>
-                <Select>
+                <Select value={selectedServiceType} onValueChange={setSelectedServiceType}>
                   <SelectTrigger className="glass border-white/20 text-white">
                     <SelectValue placeholder="Todos os tipos" />
                   </SelectTrigger>
-                  <SelectContent className="glass-card border-white/20">
-                    <SelectItem value="cpr">CPR</SelectItem>
-                    <SelectItem value="credito">Crédito Rural</SelectItem>
+                  <SelectContent className="glass-card border-white/20 bg-slate-900">
+                    <SelectItem value="CPR">CPR</SelectItem>
+                    <SelectItem value="Crédito Rural">Crédito Rural</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
-            <div className="flex justify-end mt-4">
-              <Button className="glass-button">
+            <div className="flex justify-end mt-4 space-x-2">
+              <Button variant="outline" className="glass border-white/20 text-white" onClick={handleClearFilters}>
+                Limpar Filtros
+              </Button>
+              <Button className="glass-button" onClick={handleSearch}>
                 <Search className="w-4 h-4 mr-2" />
                 Buscar
               </Button>
@@ -164,7 +207,7 @@ const Services = () => {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold text-white">
-              Serviços Filtrado por: <span className="text-blue-400">3 Registros</span>
+              Serviços Filtrados: <span className="text-blue-400">{filteredServices.length} Registros</span>
             </h2>
             <div className="flex space-x-2">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
@@ -173,78 +216,90 @@ const Services = () => {
             </div>
           </div>
 
-          {services.map((service, index) => (
-            <Card 
-              key={service.id} 
-              className="glass-card border-white/20 animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardContent className="p-6">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
-                  {/* Priority Indicator */}
-                  <div className="lg:col-span-1 flex lg:flex-col items-center space-x-2 lg:space-x-0 lg:space-y-2">
-                    <div className={`w-3 h-3 rounded-full ${getPriorityColor(service.priority)}`}></div>
-                    <span className="text-white/60 text-sm">#{service.id}</span>
-                  </div>
-
-                  {/* Service Info */}
-                  <div className="lg:col-span-8 space-y-3">
-                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-                      <div>
-                        <h3 className="text-lg font-semibold text-blue-400">{service.client}</h3>
-                        <p className="text-white/70">{service.company}</p>
-                        <p className="text-white/60 text-sm">{service.service}</p>
-                      </div>
-                      <Badge className={`${getStatusColor(service.status)} border`}>
-                        {service.status}
-                      </Badge>
-                    </div>
-                    
-                    <p className="text-white/80">{service.description}</p>
-                    
-                    <div className="flex flex-wrap gap-4 text-sm">
-                      <div>
-                        <span className="text-white/60">Valor: </span>
-                        <span className="text-white font-medium">{service.value}</span>
-                      </div>
-                      <div>
-                        <span className="text-white/60">Vl. Serviço: </span>
-                        <span className="text-green-400 font-medium">{service.serviceValue}</span>
-                      </div>
-                      <div>
-                        <span className="text-white/60">Dias: </span>
-                        <span className="text-white font-medium">{service.days}</span>
-                      </div>
-                    </div>
-
-                    {/* Progress Bar */}
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-white/60">Progresso</span>
-                        <span className="text-white/60">{service.progress}%</span>
-                      </div>
-                      <div className="w-full bg-white/10 rounded-full h-2">
-                        <div 
-                          className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
-                          style={{ width: `${service.progress}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="lg:col-span-3 flex lg:flex-col items-center space-x-2 lg:space-x-0 lg:space-y-2">
-                    <Button size="sm" className="glass-button flex-1 lg:flex-none lg:w-full">
-                      Ver Detalhes
-                    </Button>
-                    <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-white/10">
-                      <MoreHorizontal className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
+          {filteredServices.length === 0 ? (
+            <Card className="glass-card border-white/20">
+              <CardContent className="p-12 text-center">
+                <p className="text-white/60">Nenhum serviço encontrado com os filtros aplicados.</p>
               </CardContent>
             </Card>
-          ))}
+          ) : (
+            filteredServices.map((service, index) => (
+              <Card 
+                key={service.id} 
+                className="glass-card border-white/20 animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <CardContent className="p-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+                    {/* Priority Indicator */}
+                    <div className="lg:col-span-1 flex lg:flex-col items-center space-x-2 lg:space-x-0 lg:space-y-2">
+                      <div className={`w-3 h-3 rounded-full ${getPriorityColor(service.priority)}`}></div>
+                      <span className="text-white/60 text-sm">#{service.id}</span>
+                    </div>
+
+                    {/* Service Info */}
+                    <div className="lg:col-span-8 space-y-3">
+                      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                        <div>
+                          <h3 className="text-lg font-semibold text-blue-400">{service.client}</h3>
+                          <p className="text-white/70">{service.company}</p>
+                          <p className="text-white/60 text-sm">{service.service}</p>
+                        </div>
+                        <Badge className={`${getStatusColor(service.status)} border`}>
+                          {service.status}
+                        </Badge>
+                      </div>
+                      
+                      <p className="text-white/80">{service.description}</p>
+                      
+                      <div className="flex flex-wrap gap-4 text-sm">
+                        <div>
+                          <span className="text-white/60">Valor: </span>
+                          <span className="text-white font-medium">{service.value}</span>
+                        </div>
+                        <div>
+                          <span className="text-white/60">Vl. Serviço: </span>
+                          <span className="text-green-400 font-medium">{service.serviceValue}</span>
+                        </div>
+                        <div>
+                          <span className="text-white/60">Dias: </span>
+                          <span className="text-white font-medium">{service.days}</span>
+                        </div>
+                      </div>
+
+                      {/* Progress Bar */}
+                      <div className="space-y-1">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-white/60">Progresso</span>
+                          <span className="text-white/60">{service.progress}%</span>
+                        </div>
+                        <div className="w-full bg-white/10 rounded-full h-2">
+                          <div 
+                            className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
+                            style={{ width: `${service.progress}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="lg:col-span-3 flex lg:flex-col items-center space-x-2 lg:space-x-0 lg:space-y-2">
+                      <Button 
+                        size="sm" 
+                        className="glass-button flex-1 lg:flex-none lg:w-full"
+                        onClick={() => alert(`Visualizando detalhes do serviço ${service.id}`)}
+                      >
+                        Ver Detalhes
+                      </Button>
+                      <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-white/10">
+                        <MoreHorizontal className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))
+          )}
         </div>
       </div>
     </DashboardLayout>
