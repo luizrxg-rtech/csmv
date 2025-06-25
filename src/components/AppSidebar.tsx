@@ -50,9 +50,9 @@ const AppSidebar = () => {
               <NavLink
                 key={item.path}
                 to={item.path}
-                className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 animate-fade-in ${
+                className={`flex items-center space-x-3 px-4 py-3 rounded-lg ${
                   isActive(item.path)
-                    ? 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-900 border border-green-200'
+                    ? 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-900'
                     : 'text-green-700 hover:text-green-900 hover:bg-green-50'
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}

@@ -128,9 +128,6 @@ const Services = () => {
               <Plus className="size-4" />
               Cadastrar Serviços
             </Button>
-            <Button variant="outline" className="glass border-orange-500/30 text-orange-700 hover:bg-orange-500/20">
-              ⚠ Impedimentos
-            </Button>
           </div>
         </div>
 
