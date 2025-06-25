@@ -159,12 +159,6 @@ const Landing = () => {
                   {isLoading ? 'Entrando...' : 'Acessar Plataforma'}
                 </Button>
 
-                <div className="text-center space-y-2">
-                  <p className="text-green-600 text-sm">Credenciais de demonstração:</p>
-                  <p className="text-green-700 text-xs">
-                    Email: admin@example.com | Senha: password
-                  </p>
-                </div>
               </form>
             </CardContent>
           </Card>

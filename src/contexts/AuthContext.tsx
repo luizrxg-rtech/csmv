@@ -33,7 +33,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (email: string, password: string): Promise<boolean> => {
     // Simulação de login - em produção seria uma chamada real para API
-    if (email === 'admin@example.com' && password === 'password') {
+    if (email === 'admin@example.com' && password === 'G7#kP!9xQ2$z') {
       setUser({
         id: '1',
         name: 'Administrator',
