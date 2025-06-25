@@ -235,19 +235,19 @@ const Clients = () => {
                         </td>
                         <td className="py-4 px-4">
                           <div className="flex items-center text-gray-900/80">
-                            <Phone className="size-4 text-blue-400" />
+                            <Phone className="size-4 mr-2 text-blue-400" />
                             {client.phone}
                           </div>
                         </td>
                         <td className="py-4 px-4">
                           <div className="flex items-center text-gray-900/80">
-                            <Mail className="size-4 text-green-400" />
+                            <Mail className="size-4 mr-2 text-green-400" />
                             {client.email}
                           </div>
                         </td>
                         <td className="py-4 px-4">
                           <div className="flex items-center text-gray-900/80">
-                            <MapPin className="size-4 text-purple-400" />
+                            <MapPin className="size-4 mr-2 text-purple-400" />
                             {client.city}, {client.state}
                           </div>
                         </td>
