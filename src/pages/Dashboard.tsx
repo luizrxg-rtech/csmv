@@ -1,9 +1,8 @@
-
 import DashboardLayout from '@/components/DashboardLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Briefcase, DollarSign, TrendingUp } from 'lucide-react';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 const Dashboard = () => {
   const stats = [
@@ -103,22 +102,18 @@ const Dashboard = () => {
 
         {/* Charts Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Gráfico de Atendimentos */}
+          {/* Lista de Atendimentos */}
           <Card className="glass-card border-green-200/40">
             <CardHeader>
               <CardTitle className="text-gray-900">Atendimentos por Atendente</CardTitle>
             </CardHeader>
-            <CardContent>
-              <ChartContainer config={chartConfig} className="h-[300px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={atendimentosData} layout="horizontal" margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                    <XAxis type="number" />
-                    <YAxis dataKey="atendente" type="category" width={80} />
-                    <ChartTooltip content={<ChartTooltipContent />} />
-                    <Bar dataKey="atendimentos" fill="#10b981" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </ChartContainer>
+            <CardContent className="space-y-3">
+              {atendimentosData.map((item, index) => (
+                <div key={index} className="flex items-center justify-between p-3 bg-white/60 border border-green-200/50 rounded-lg">
+                  <span className="text-gray-900 font-medium">{item.atendente}</span>
+                  <span className="text-green-600 font-semibold">{item.atendimentos} atendimentos</span>
+                </div>
+              ))}
             </CardContent>
           </Card>
 
