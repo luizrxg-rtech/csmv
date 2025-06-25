@@ -5,7 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Upload, Check } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Upload, Check, Unlock } from 'lucide-react';
 import DashboardLayout from '@/components/DashboardLayout';
 import { useToast } from '@/hooks/use-toast';
 
@@ -13,12 +14,14 @@ const Loan = () => {
   const [loanAmount, setLoanAmount] = useState([500000]);
   const [manualAmount, setManualAmount] = useState('500000');
   const [isAmountConfirmed, setIsAmountConfirmed] = useState(false);
+  const [isAmountLocked, setIsAmountLocked] = useState(false);
   const [formData, setFormData] = useState({
     nomeFantasia: '',
     cnpj: '',
     email: '',
     telefone: '',
-    endereco: ''
+    endereco: '',
+    prazo: ''
   });
   const [uploadedFiles, setUploadedFiles] = useState({
     matricula: null,
@@ -53,9 +56,18 @@ const Loan = () => {
 
   const confirmAmount = () => {
     setIsAmountConfirmed(true);
+    setIsAmountLocked(true);
     toast({
       title: "Valor confirmado!",
       description: `Empréstimo de ${formatCurrency(loanAmount[0])} confirmado. Preencha os dados abaixo.`
+    });
+  };
+
+  const unlockAmount = () => {
+    setIsAmountLocked(false);
+    toast({
+      title: "Valor desbloqueado!",
+      description: "Agora você pode alterar o valor do empréstimo."
     });
   };
 
@@ -109,6 +121,13 @@ const Loan = () => {
     { key: 'lau', label: 'Licença Ambiental Única (LAU)' }
   ];
 
+  const prazoOptions = [
+    { value: '7', label: 'Em até 7 dias' },
+    { value: '30', label: 'Em até 30 dias' },
+    { value: '60', label: 'Em até 60 dias' },
+    { value: '90', label: 'Em até 90 dias' }
+  ];
+
   return (
     <DashboardLayout>
       <div className="space-y-6">
@@ -131,7 +150,7 @@ const Loan = () => {
                   min={0}
                   step={10000}
                   className="w-full"
-                  disabled={isAmountConfirmed}
+                  disabled={isAmountLocked}
                 />
               </div>
               <div className="flex items-center space-x-4">
@@ -145,7 +164,7 @@ const Loan = () => {
                       onChange={handleManualAmountChange}
                       className="pl-10"
                       placeholder="0"
-                      disabled={isAmountConfirmed}
+                      disabled={isAmountLocked}
                     />
                   </div>
                 </div>
@@ -153,17 +172,30 @@ const Loan = () => {
                   <div className="text-2xl font-bold text-green-900">
                     {formatCurrency(loanAmount[0])}
                   </div>
-                  {!isAmountConfirmed && (
-                    <Button onClick={confirmAmount} className="bg-green-600 hover:bg-green-700">
-                      Confirmar Valor
-                    </Button>
-                  )}
-                  {isAmountConfirmed && (
-                    <div className="flex items-center text-green-600">
-                      <Check className="w-4 h-4 mr-1" />
-                      Confirmado
-                    </div>
-                  )}
+                  <div className="flex space-x-2">
+                    {!isAmountConfirmed && (
+                      <Button onClick={confirmAmount} className="bg-green-600 hover:bg-green-700">
+                        Confirmar Valor
+                      </Button>
+                    )}
+                    {isAmountConfirmed && !isAmountLocked && (
+                      <Button onClick={confirmAmount} className="bg-green-600 hover:bg-green-700">
+                        Confirmar Valor
+                      </Button>
+                    )}
+                    {isAmountLocked && (
+                      <>
+                        <div className="flex items-center text-green-600">
+                          <Check className="w-4 h-4 mr-1" />
+                          Confirmado
+                        </div>
+                        <Button onClick={unlockAmount} variant="outline" size="sm" className="border-green-300 text-green-700 hover:bg-green-50">
+                          <Unlock className="w-4 h-4 mr-1" />
+                          Desbloquear
+                        </Button>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -215,7 +247,22 @@ const Loan = () => {
                       placeholder="(00) 00000-0000"
                     />
                   </div>
-                  <div className="space-y-2 md:col-span-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="prazo" className="text-green-800">Em quanto tempo você precisa?</Label>
+                    <Select value={formData.prazo} onValueChange={(value) => handleInputChange('prazo', value)}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione o prazo" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {prazoOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
                     <Label htmlFor="endereco" className="text-green-800">Endereço</Label>
                     <Input
                       id="endereco"
