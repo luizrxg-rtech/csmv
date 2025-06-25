@@ -263,7 +263,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                         <Input 
                           placeholder="Pesquisar cliente..." 
-                          className="bg-green-400/10 text-gray-900 placeholder:text-gray-900/50"
+                          className="bg-green-400/10 text-gray-900 placeholder:text-green-500"
                           value={receivablesFilters.client}
                           onChange={(e) => setReceivablesFilters({...receivablesFilters, client: e.target.value})}
                         />
@@ -370,7 +370,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                         <Input 
                           placeholder="Cliente..." 
-                          className="bg-green-400/10 text-gray-900 placeholder:text-gray-900/50"
+                          className="bg-green-400/10 text-gray-900 placeholder:text-green-500"
                           value={payablesFilters.client}
                           onChange={(e) => setPayablesFilters({...payablesFilters, client: e.target.value})}
                         />
@@ -379,7 +379,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Vendedor</label>
                         <Input 
                           placeholder="Vendedor..." 
-                          className="bg-green-400/10 text-gray-900 placeholder:text-gray-900/50"
+                          className="bg-green-400/10 text-gray-900 placeholder:text-green-500"
                           value={payablesFilters.vendor}
                           onChange={(e) => setPayablesFilters({...payablesFilters, vendor: e.target.value})}
                         />

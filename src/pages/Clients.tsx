@@ -160,7 +160,7 @@ const Clients = () => {
                       placeholder="Pesquisar clientes..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="bg-green-400/10 text-gray-900 placeholder:text-gray-900/50"
+                      className="bg-green-400/10 text-gray-900 placeholder:text-green-500"
                     />
                   </div>
                 </div>
@@ -169,7 +169,7 @@ const Clients = () => {
           </div>
           
           <Card className="glass-card border-white/20">
-            <CardContent className="p-6 text-center">
+            <CardContent className="px-6 py-4 text-center">
               <div className="text-2xl font-bold text-gray-900">{filteredClients.length}</div>
               <div className="text-gray-900/60 text-sm">Clientes Encontrados</div>
             </CardContent>

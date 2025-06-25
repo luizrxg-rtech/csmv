@@ -152,7 +152,7 @@ const Services = () => {
                 <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                 <Input 
                   placeholder="Buscar cliente..." 
-                  className="bg-green-400/10 text-gray-900 placeholder:text-gray-900/50"
+                  className="bg-green-400/10 text-gray-900 placeholder:text-green-500"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -267,10 +267,12 @@ const Services = () => {
                           <span className="text-gray-900/60">{service.progress}%</span>
                         </div>
                         <div className="w-full bg-white/10 rounded-full h-2">
-                          <div 
-                            className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
-                            style={{ width: `${service.progress}%` }}
-                          ></div>
+                          <div className="flex flex-row rounded-full bg-gray-200">
+                            <div
+                              className="bg-gradient-to-r from-green-400 to-green-700 h-2 rounded-full transition-all duration-300"
+                              style={{ width: `${service.progress}%` }}
+                            ></div>
+                          </div>
                         </div>
                       </div>
                     </div>
