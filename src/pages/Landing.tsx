@@ -118,13 +118,13 @@ const Landing = () => {
                 <div className="space-y-2">
                   <label className="text-green-800 text-sm">Email</label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-green-500" />
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-green-500" />
                     <Input
                       type="email"
                       placeholder="seu@email.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="glass border-green-200/50 text-green-900 placeholder:text-green-500 pl-10 bg-white/80"
+                      className="glass border-green-200/50 text-green-900  pl-10 bg-white/80"
                       required
                     />
                   </div>
@@ -133,13 +133,13 @@ const Landing = () => {
                 <div className="space-y-2">
                   <label className="text-green-800 text-sm">Senha</label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-green-500" />
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-green-500" />
                     <Input
                       type="password"
                       placeholder="sua senha"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="glass border-green-200/50 text-green-900 placeholder:text-green-500 pl-10 bg-white/80"
+                      className="glass border-green-200/50 text-green-900  pl-10 bg-white/80"
                       required
                     />
                   </div>

@@ -3,7 +3,7 @@ import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
 import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
 import {Badge} from '@/components/ui/badge';
-import {Eye, Mail, MapPin, Phone, Plus, Search, Trash2} from 'lucide-react';
+import {Eye, Mail, MapPin, Phone, Plus, RefreshCcw, Search, Trash2} from 'lucide-react';
 import {useState} from 'react';
 
 const Clients = () => {
@@ -17,7 +17,7 @@ const Clients = () => {
       email: 'aglailton@email.com',
       city: 'São Paulo',
       state: 'SP',
-      origem: 'Lead',
+      origem: 'Tela de simulação',
       status: 'active'
     },
     {
@@ -27,7 +27,7 @@ const Clients = () => {
       email: 'contato@agronegociosbr.com',
       city: 'Palmas',
       state: 'TO',
-      origem: 'Whatsapp',
+      origem: 'Agro afiliado',
       status: 'active'
     },
     {
@@ -37,7 +37,7 @@ const Clients = () => {
       email: 'ailton.silva@email.com',
       city: 'Marabá',
       state: 'PA',
-      origem: 'Lead',
+      origem: 'Tela de simulação',
       status: 'active'
     },
     {
@@ -47,7 +47,7 @@ const Clients = () => {
       email: 'alberto.santos@email.com',
       city: 'Salvador',
       state: 'BA',
-      origem: 'Telefone',
+      origem: 'Tráfego pago',
       status: 'inactive'
     },
     {
@@ -57,7 +57,7 @@ const Clients = () => {
       email: 'alcimar.trindade@email.com',
       city: 'Araguaína',
       state: 'TO',
-      origem: 'Telefone',
+      origem: 'Tráfego pago',
       status: 'active'
     },
     {
@@ -67,7 +67,7 @@ const Clients = () => {
       email: 'alcino.moreira@email.com',
       city: 'Governador Valadares',
       state: 'MG',
-      origem: 'Lead',
+      origem: 'Tela de simulação',
       status: 'active'
     },
     {
@@ -77,7 +77,7 @@ const Clients = () => {
       email: 'alessandro.costa@email.com',
       city: 'São José do Rio Preto',
       state: 'SP',
-      origem: 'Whatsapp',
+      origem: 'Marketing Orgânico',
       status: 'pending'
     }
   ];
@@ -137,13 +137,14 @@ const Clients = () => {
               className="glass-button"
               onClick={() => alert('Funcionalidade de cadastro em desenvolvimento')}
             >
-              <Plus className="w-4 h-4 mr-2" />
+              <Plus className="size-4" />
               Cadastrar Novo Cliente
             </Button>
             <Button 
-              className="bg-green-600 hover:bg-green-700 text-white"
+              className="glass-button"
               onClick={handleReloadList}
             >
+              <RefreshCcw className="size-4" />
               Recarregar Lista
             </Button>
           </div>
@@ -160,7 +161,7 @@ const Clients = () => {
                       placeholder="Pesquisar clientes..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="bg-green-400/10 text-gray-900 placeholder:text-green-500"
+                      className="text-gray-900 "
                     />
                   </div>
                 </div>
@@ -234,19 +235,19 @@ const Clients = () => {
                         </td>
                         <td className="py-4 px-4">
                           <div className="flex items-center text-gray-900/80">
-                            <Phone className="w-4 h-4 mr-2 text-blue-400" />
+                            <Phone className="size-4 text-blue-400" />
                             {client.phone}
                           </div>
                         </td>
                         <td className="py-4 px-4">
                           <div className="flex items-center text-gray-900/80">
-                            <Mail className="w-4 h-4 mr-2 text-green-400" />
+                            <Mail className="size-4 text-green-400" />
                             {client.email}
                           </div>
                         </td>
                         <td className="py-4 px-4">
                           <div className="flex items-center text-gray-900/80">
-                            <MapPin className="w-4 h-4 mr-2 text-purple-400" />
+                            <MapPin className="size-4 text-purple-400" />
                             {client.city}, {client.state}
                           </div>
                         </td>
@@ -274,19 +275,19 @@ const Clients = () => {
                   Página 1 de 1
                 </div>
                 <div className="flex space-x-2">
-                  <Button variant="outline" size="sm" className="bg-green-400/10 text-gray-900" disabled>
+                  <Button variant="outline" size="sm" className="text-gray-900" disabled>
                     Primeiro
                   </Button>
-                  <Button variant="outline" size="sm" className="bg-green-400/10 text-gray-900" disabled>
+                  <Button variant="outline" size="sm" className="text-gray-900" disabled>
                     Anterior
                   </Button>
                   <Button variant="default" size="sm" className="glass-button">
                     1
                   </Button>
-                  <Button variant="outline" size="sm" className="bg-green-400/10 text-gray-900" disabled>
+                  <Button variant="outline" size="sm" className="text-gray-900" disabled>
                     Próxima
                   </Button>
-                  <Button variant="outline" size="sm" className="bg-green-400/10 text-gray-900" disabled>
+                  <Button variant="outline" size="sm" className="text-gray-900" disabled>
                     Última
                   </Button>
                 </div>

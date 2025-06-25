@@ -4,7 +4,24 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, Search, Calendar, TrendingUp, TrendingDown, Eye, FileDown, AlertTriangle, Receipt } from 'lucide-react';
+import {
+  Plus,
+  Search,
+  BanknoteArrowUp,
+  BanknoteArrowDown,
+  TrendingUp,
+  TrendingDown,
+  Eye,
+  FileDown,
+  AlertTriangle,
+  Receipt,
+  TriangleAlert,
+  Clipboard,
+  Waypoints,
+  Settings,
+  Check,
+  X, FileText
+} from 'lucide-react';
 import { useState } from 'react';
 
 const Financial = () => {
@@ -149,11 +166,22 @@ const Financial = () => {
               className="glass-button"
               onClick={() => alert('Funcionalidade de cadastro em desenvolvimento')}
             >
-              <Plus className="w-4 h-4 mr-2" />
+              <Plus className="size-4" />
               Cadastrar
             </Button>
-            <Button className="bg-green-600 hover:bg-green-700 text-white">
-              Ações/Config
+            <Button
+              className="glass-button"
+              onClick={() => alert('Funcionalidade de ações em desenvolvimento')}
+            >
+              <Waypoints className="size-4" />
+              Ações
+            </Button>
+            <Button
+              className="glass-button"
+              onClick={() => alert('Funcionalidade de configurações em desenvolvimento')}
+            >
+              <Settings className="size-4" />
+              Configurações
             </Button>
           </div>
         </div>
@@ -216,20 +244,25 @@ const Financial = () => {
           <CardContent className="p-6">
             <Tabs defaultValue="receivables" className="w-full">
               <TabsList className="grid w-full grid-cols-5 glass">
-                <TabsTrigger value="receivables" className="data-[state=active]:bg-green-500/20 data-[state=active]:text-gray-900">
-                  📈 Receber
+                <TabsTrigger value="receivables" className="data-[state=active]:bg-green-500/20 data-[state=active]:text-green-700">
+                  <BanknoteArrowUp className="size-4 mr-2"/>
+                  Receber
                 </TabsTrigger>
-                <TabsTrigger value="payables" className="data-[state=active]:bg-red-500/20 data-[state=active]:text-gray-900">
-                  📉 Pagar
+                <TabsTrigger value="payables" className="data-[state=active]:bg-red-500/20 data-[state=active]:text-red-700">
+                  <BanknoteArrowDown className="size-4 mr-2"/>
+                  Pagar
                 </TabsTrigger>
-                <TabsTrigger value="alerts" className="data-[state=active]:bg-yellow-500/20 data-[state=active]:text-gray-900">
-                  ⚠ Avisos de Pagamento
+                <TabsTrigger value="alerts" className="data-[state=active]:bg-yellow-500/20 data-[state=active]:text-yellow-700">
+                  <TriangleAlert className="size-4 mr-2"/>
+                  Avisos de Pagamento
                 </TabsTrigger>
-                <TabsTrigger value="collections" className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-gray-900">
-                  💰 Cobranças
+                <TabsTrigger value="collections" className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-700">
+                  <Receipt className="size-4 mr-2"/>
+                  Cobranças
                 </TabsTrigger>
-                <TabsTrigger value="reports" className="data-[state=active]:bg-purple-500/20 data-[state=active]:text-gray-900">
-                  📊 Relatório DRE
+                <TabsTrigger value="reports" className="data-[state=active]:bg-purple-500/20 data-[state=active]:text-purple-700">
+                  <Clipboard className="size-4 mr-2"/>
+                  Relatório DRE
                 </TabsTrigger>
               </TabsList>
 
@@ -245,7 +278,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Data Inicial</label>
                         <Input 
                           type="date" 
-                          className="bg-green-400/10 text-gray-900"
+                          className="text-gray-900"
                           value={receivablesFilters.startDate}
                           onChange={(e) => setReceivablesFilters({...receivablesFilters, startDate: e.target.value})}
                         />
@@ -254,7 +287,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Data Final</label>
                         <Input 
                           type="date" 
-                          className="bg-green-400/10 text-gray-900"
+                          className="text-gray-900"
                           value={receivablesFilters.endDate}
                           onChange={(e) => setReceivablesFilters({...receivablesFilters, endDate: e.target.value})}
                         />
@@ -263,7 +296,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                         <Input 
                           placeholder="Pesquisar cliente..." 
-                          className="bg-green-400/10 text-gray-900 placeholder:text-green-500"
+                          className="text-gray-900 "
                           value={receivablesFilters.client}
                           onChange={(e) => setReceivablesFilters({...receivablesFilters, client: e.target.value})}
                         />
@@ -271,7 +304,7 @@ const Financial = () => {
                     </div>
                     <div className="flex space-x-2 items-end">
                       <Button className="glass-button" onClick={handleReceivablesSearch}>
-                        <Search className="w-4 h-4 mr-2" />
+                        <Search className="size-4" />
                         Pesquisar
                       </Button>
                     </div>
@@ -280,13 +313,16 @@ const Financial = () => {
                   {/* Generate Actions */}
                   <div className="flex space-x-2">
                     <Button className="glass-button" onClick={handleGenerateReceipt}>
-                      📄 Gerar Recibo
+                      <FileText className="size-4" />
+                      Gerar Recibo
                     </Button>
                     <Button className="glass-button" onClick={handleMarkItems}>
-                      ✓ Marcar
+                      <Check className="size-4" />
+                      Marcar
                     </Button>
                     <Button className="glass-button" onClick={handleUnmarkItems}>
-                      ❌ Desmarcar
+                      <X className="size-4" />
+                      Desmarcar
                     </Button>
                   </div>
 
@@ -313,7 +349,7 @@ const Financial = () => {
                                 className="glass-button px-3"
                                 onClick={() => alert(`Visualizando detalhes da conta ${item.id}`)}
                               >
-                                📋
+                                <Clipboard className="size-4" />
                               </Button>
                             </td>
                             <td className="py-4 px-4 text-gray-900">{item.client}</td>
@@ -352,7 +388,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Data Inicial</label>
                         <Input 
                           type="date" 
-                          className="bg-green-400/10 text-gray-900"
+                          className="text-gray-900"
                           value={payablesFilters.startDate}
                           onChange={(e) => setPayablesFilters({...payablesFilters, startDate: e.target.value})}
                         />
@@ -361,7 +397,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Data Final</label>
                         <Input 
                           type="date" 
-                          className="bg-green-400/10 text-gray-900"
+                          className="text-gray-900"
                           value={payablesFilters.endDate}
                           onChange={(e) => setPayablesFilters({...payablesFilters, endDate: e.target.value})}
                         />
@@ -370,7 +406,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                         <Input 
                           placeholder="Cliente..." 
-                          className="bg-green-400/10 text-gray-900 placeholder:text-green-500"
+                          className="text-gray-900 "
                           value={payablesFilters.client}
                           onChange={(e) => setPayablesFilters({...payablesFilters, client: e.target.value})}
                         />
@@ -379,7 +415,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Vendedor</label>
                         <Input 
                           placeholder="Vendedor..." 
-                          className="bg-green-400/10 text-gray-900 placeholder:text-green-500"
+                          className="text-gray-900 "
                           value={payablesFilters.vendor}
                           onChange={(e) => setPayablesFilters({...payablesFilters, vendor: e.target.value})}
                         />
@@ -387,7 +423,7 @@ const Financial = () => {
                     </div>
                     <div className="flex items-end">
                       <Button className="glass-button" onClick={handlePayablesSearch}>
-                        <Search className="w-4 h-4 mr-2" />
+                        <Search className="size-4" />
                         Pesquisar
                       </Button>
                     </div>
@@ -416,7 +452,7 @@ const Financial = () => {
                                 className="glass-button px-3"
                                 onClick={() => alert(`Visualizando detalhes da conta ${item.id}`)}
                               >
-                                📋
+                                <Clipboard className="size-4" />
                               </Button>
                             </td>
                             <td className="py-4 px-4 text-gray-900">{item.vendor}</td>
@@ -467,11 +503,11 @@ const Financial = () => {
                     <h3 className="text-xl font-semibold text-white">Relatório DRE</h3>
                     <div className="flex space-x-2">
                       <Button className="glass-button">
-                        <Search className="w-4 h-4 mr-2" />
+                        <Search className="size-4" />
                         Pesquisar
                       </Button>
                       <Button className="bg-green-600 hover:bg-green-700 text-white">
-                        <FileDown className="w-4 h-4 mr-2" />
+                        <FileDown className="size-4" />
                         Imprimir
                       </Button>
                     </div>
@@ -480,11 +516,11 @@ const Financial = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
                       <label className="text-gray-900/70 text-sm mb-2 block">Data Inicial</label>
-                      <Input type="date" className="bg-green-400/10 text-gray-900" />
+                      <Input type="date" className="text-gray-900" />
                     </div>
                     <div>
                       <label className="text-gray-900/70 text-sm mb-2 block">Data Final</label>
-                      <Input type="date" className="bg-green-400/10 text-gray-900" />
+                      <Input type="date" className="text-gray-900" />
                     </div>
                   </div>
 

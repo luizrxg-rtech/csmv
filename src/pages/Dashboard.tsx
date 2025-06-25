@@ -51,7 +51,7 @@ const Dashboard = () => {
     { origem: 'Marketing Orgânico', valor: 15, porcentagem: '15%' }
   ];
 
-  const COLORS = ['#10b981', '#059669', '#047857', '#065f46'];
+  const COLORS = ['#ef4444', '#f97316', '#eab308', '#22c55e']
 
   const chartConfig = {
     atendimentos: {

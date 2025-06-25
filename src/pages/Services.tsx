@@ -125,7 +125,7 @@ const Services = () => {
           </div>
           <div className="flex space-x-3">
             <Button className="glass-button" onClick={() => alert('Funcionalidade de cadastro em desenvolvimento')}>
-              <Plus className="w-4 h-4 mr-2" />
+              <Plus className="size-4" />
               Cadastrar Serviços
             </Button>
             <Button variant="outline" className="glass border-orange-500/30 text-orange-700 hover:bg-orange-500/20">
@@ -152,7 +152,7 @@ const Services = () => {
                 <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                 <Input 
                   placeholder="Buscar cliente..." 
-                  className="bg-green-400/10 text-gray-900 placeholder:text-green-500"
+                  className="text-gray-900 "
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -160,7 +160,7 @@ const Services = () => {
               <div>
                 <label className="text-gray-900/70 text-sm mb-2 block">Empresa</label>
                 <Select value={selectedCompany} onValueChange={setSelectedCompany}>
-                  <SelectTrigger className="bg-green-400/10 text-gray-900">
+                  <SelectTrigger className="text-gray-900">
                     <SelectValue placeholder="Selecione..." />
                   </SelectTrigger>
                   <SelectContent className="glass-card border-white/20 bg-slate-900">
@@ -172,7 +172,7 @@ const Services = () => {
               <div>
                 <label className="text-gray-900/70 text-sm mb-2 block">Status</label>
                 <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-                  <SelectTrigger className="bg-green-400/10 text-gray-900">
+                  <SelectTrigger className="text-gray-900">
                     <SelectValue placeholder="Todos os status" />
                   </SelectTrigger>
                   <SelectContent className="glass-card border-white/20 bg-slate-900">
@@ -185,7 +185,7 @@ const Services = () => {
               <div>
                 <label className="text-gray-900/70 text-sm mb-2 block">Tipo Serviço</label>
                 <Select value={selectedServiceType} onValueChange={setSelectedServiceType}>
-                  <SelectTrigger className="bg-green-400/10 text-gray-900">
+                  <SelectTrigger className="text-gray-900">
                     <SelectValue placeholder="Todos os tipos" />
                   </SelectTrigger>
                   <SelectContent className="glass-card border-white/20 bg-slate-900">
@@ -287,7 +287,7 @@ const Services = () => {
                         Ver Detalhes
                       </Button>
                       <Button variant="ghost" size="icon" className="text-gray-900/60 hover:text-gray-900 hover:bg-white/10">
-                        <MoreHorizontal className="w-4 h-4" />
+                        <MoreHorizontal className="size-4" />
                       </Button>
                     </div>
                   </div>

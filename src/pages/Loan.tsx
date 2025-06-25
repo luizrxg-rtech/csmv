@@ -1,14 +1,13 @@
-
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Slider } from '@/components/ui/slider';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Upload, Check, Unlock } from 'lucide-react';
+import {useState} from 'react';
+import {Button} from '@/components/ui/button';
+import {Input} from '@/components/ui/input';
+import {Label} from '@/components/ui/label';
+import {Slider} from '@/components/ui/slider';
+import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '@/components/ui/select';
+import {Check, Edit, Upload} from 'lucide-react';
 import DashboardLayout from '@/components/DashboardLayout';
-import { useToast } from '@/hooks/use-toast';
+import {useToast} from '@/hooks/use-toast';
 
 const Loan = () => {
   const [loanAmount, setLoanAmount] = useState([500000]);
@@ -136,45 +135,46 @@ const Loan = () => {
         </div>
 
         <Card className="glass-card">
-          <CardHeader>
+          <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-green-900">Valor do Empréstimo</CardTitle>
+            <div className="flex flex-col items-end space-y-2">
+              <div className="text-2xl font-bold text-green-900">
+                {formatCurrency(loanAmount[0])}
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-4">
               <Label className="text-green-800">Selecione o valor desejado:</Label>
-              <div className="px-4">
-                <Slider
-                  value={loanAmount}
-                  onValueChange={handleSliderChange}
-                  max={3000000}
-                  min={0}
-                  step={10000}
-                  className="w-full"
-                  disabled={isAmountLocked}
-                />
-              </div>
+              <Slider
+                value={loanAmount}
+                onValueChange={handleSliderChange}
+                max={3000000}
+                min={0}
+                step={10000}
+                className="w-full"
+                disabled={isAmountLocked}
+              />
               <div className="flex items-center space-x-4">
-                <div className="flex-1">
-                  <Label htmlFor="manual-amount" className="text-green-800">Ou digite o valor:</Label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-700">R$</span>
-                    <Input
-                      id="manual-amount"
-                      value={manualAmount}
-                      onChange={handleManualAmountChange}
-                      className="pl-10"
-                      placeholder="0"
-                      disabled={isAmountLocked}
-                    />
+                <div className="flex flex-row gap-4 w-full">
+                  <div className="flex flex-col w-full gap-2">
+                    <Label htmlFor="manual-amount" className="text-green-800">Ou digite o valor:</Label>
+                    <div className="relative">
+                      <span className="absolute left-3 top-1/2 transform -translate-y-1/2 font-bold text-green-700">R$</span>
+                      <Input
+                        id="manual-amount"
+                        value={manualAmount}
+                        onChange={handleManualAmountChange}
+                        className="pl-10 font-bold text-green-700"
+                        placeholder="0"
+                        disabled={isAmountLocked}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="flex flex-col items-end space-y-2">
-                  <div className="text-2xl font-bold text-green-900">
-                    {formatCurrency(loanAmount[0])}
-                  </div>
-                  <div className="flex space-x-2">
+                  <div className="flex h-fit mt-auto space-x-2">
                     {!isAmountConfirmed && (
                       <Button onClick={confirmAmount} className="bg-green-600 hover:bg-green-700">
+                        <Check className="size-4 mr-1" />
                         Confirmar Valor
                       </Button>
                     )}
@@ -185,13 +185,9 @@ const Loan = () => {
                     )}
                     {isAmountLocked && (
                       <>
-                        <div className="flex items-center text-green-600">
-                          <Check className="w-4 h-4 mr-1" />
-                          Confirmado
-                        </div>
-                        <Button onClick={unlockAmount} variant="outline" size="sm" className="border-green-300 text-green-700 hover:bg-green-50">
-                          <Unlock className="w-4 h-4 mr-1" />
-                          Desbloquear
+                        <Button onClick={unlockAmount} variant="outline" className="border-green-300 text-green-700 ">
+                          <Edit className="size-4 mr-1" />
+                          Alterar valor
                         </Button>
                       </>
                     )}
@@ -229,6 +225,15 @@ const Loan = () => {
                     />
                   </div>
                   <div className="space-y-2">
+                    <Label htmlFor="nome-socio" className="text-green-800">Nome do Sócio</Label>
+                    <Input
+                      id="nome-socio"
+                      value={formData.nomeSocio}
+                      onChange={(e) => handleInputChange('nomeSocio', e.target.value)}
+                      placeholder="Digite o nome do sócio"
+                    />
+                  </div>
+                  <div className="space-y-2">
                     <Label htmlFor="email" className="text-green-800">E-mail</Label>
                     <Input
                       id="email"
@@ -245,15 +250,6 @@ const Loan = () => {
                       value={formData.whatsapp}
                       onChange={(e) => handleInputChange('whatsapp', e.target.value)}
                       placeholder="(00) 00000-0000"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="nome-socio" className="text-green-800">Nome do Sócio</Label>
-                    <Input
-                      id="nome-socio"
-                      value={formData.nomeSocio}
-                      onChange={(e) => handleInputChange('nomeSocio', e.target.value)}
-                      placeholder="Digite o nome do sócio"
                     />
                   </div>
                   <div className="space-y-2">
