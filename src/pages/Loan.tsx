@@ -19,8 +19,8 @@ const Loan = () => {
     nomeFantasia: '',
     cnpj: '',
     email: '',
-    telefone: '',
-    endereco: '',
+    whatsapp: '',
+    nomeSocio: '',
     prazo: ''
   });
   const [uploadedFiles, setUploadedFiles] = useState({
@@ -239,12 +239,21 @@ const Loan = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="telefone" className="text-green-800">Telefone</Label>
+                    <Label htmlFor="whatsapp" className="text-green-800">WhatsApp</Label>
                     <Input
-                      id="telefone"
-                      value={formData.telefone}
-                      onChange={(e) => handleInputChange('telefone', e.target.value)}
+                      id="whatsapp"
+                      value={formData.whatsapp}
+                      onChange={(e) => handleInputChange('whatsapp', e.target.value)}
                       placeholder="(00) 00000-0000"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="nome-socio" className="text-green-800">Nome do Sócio</Label>
+                    <Input
+                      id="nome-socio"
+                      value={formData.nomeSocio}
+                      onChange={(e) => handleInputChange('nomeSocio', e.target.value)}
+                      placeholder="Digite o nome do sócio"
                     />
                   </div>
                   <div className="space-y-2">
@@ -261,15 +270,6 @@ const Loan = () => {
                         ))}
                       </SelectContent>
                     </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="endereco" className="text-green-800">Endereço</Label>
-                    <Input
-                      id="endereco"
-                      value={formData.endereco}
-                      onChange={(e) => handleInputChange('endereco', e.target.value)}
-                      placeholder="Endereço completo"
-                    />
                   </div>
                 </div>
               </CardContent>

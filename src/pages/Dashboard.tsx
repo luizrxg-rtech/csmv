@@ -2,6 +2,8 @@
 import DashboardLayout from '@/components/DashboardLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Briefcase, DollarSign, TrendingUp } from 'lucide-react';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 const Dashboard = () => {
   const stats = [
@@ -34,6 +36,34 @@ const Dashboard = () => {
       color: 'from-pink-500 to-pink-600'
     }
   ];
+
+  const atendimentosData = [
+    { atendente: 'Maria Silva', atendimentos: 45 },
+    { atendente: 'João Santos', atendimentos: 38 },
+    { atendente: 'Ana Costa', atendimentos: 32 },
+    { atendente: 'Pedro Lima', atendimentos: 28 },
+    { atendente: 'Carla Souza', atendimentos: 25 }
+  ];
+
+  const clientesOrigemData = [
+    { origem: 'Tela de Simulação', valor: 35, porcentagem: '35%' },
+    { origem: 'Agro Afiliado', valor: 28, porcentagem: '28%' },
+    { origem: 'Tráfego Pago', valor: 22, porcentagem: '22%' },
+    { origem: 'Marketing Orgânico', valor: 15, porcentagem: '15%' }
+  ];
+
+  const COLORS = ['#10b981', '#059669', '#047857', '#065f46'];
+
+  const chartConfig = {
+    atendimentos: {
+      label: "Atendimentos",
+      color: "#10b981",
+    },
+    clientes: {
+      label: "Clientes",
+      color: "#10b981",
+    }
+  };
 
   return (
     <DashboardLayout>
@@ -69,6 +99,58 @@ const Dashboard = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Charts Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Gráfico de Atendimentos */}
+          <Card className="glass-card border-green-200/40">
+            <CardHeader>
+              <CardTitle className="text-gray-900">Atendimentos por Atendente</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ChartContainer config={chartConfig} className="h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={atendimentosData} layout="horizontal" margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                    <XAxis type="number" />
+                    <YAxis dataKey="atendente" type="category" width={80} />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Bar dataKey="atendimentos" fill="#10b981" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </ChartContainer>
+            </CardContent>
+          </Card>
+
+          {/* Gráfico de Origem dos Clientes */}
+          <Card className="glass-card border-green-200/40">
+            <CardHeader>
+              <CardTitle className="text-gray-900">Origem dos Clientes</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ChartContainer config={chartConfig} className="h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={clientesOrigemData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({ origem, porcentagem }) => `${origem}: ${porcentagem}`}
+                      outerRadius={80}
+                      fill="#8884d8"
+                      dataKey="valor"
+                    >
+                      {clientesOrigemData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                  </PieChart>
+                </ResponsiveContainer>
+              </ChartContainer>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Recent Activity */}
