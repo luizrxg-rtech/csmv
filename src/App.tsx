@@ -11,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Services from "./pages/Services";
 import Clients from "./pages/Clients";
 import Financial from "./pages/Financial";
+import Loan from "./pages/Loan";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,11 @@ const App = () => {
               <Route path="/financial" element={
                 <ProtectedRoute>
                   <Financial />
+                </ProtectedRoute>
+              } />
+              <Route path="/loan" element={
+                <ProtectedRoute>
+                  <Loan />
                 </ProtectedRoute>
               } />
             </Routes>

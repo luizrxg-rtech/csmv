@@ -1,5 +1,4 @@
-
-import { Building2, LayoutDashboard, Users, Briefcase, DollarSign, LogOut } from 'lucide-react';
+import { Building2, LayoutDashboard, Users, Briefcase, DollarSign, CreditCard, LogOut } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -12,7 +11,8 @@ const AppSidebar = () => {
     { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
     { icon: Briefcase, label: 'Serviços', path: '/services' },
     { icon: Users, label: 'Clientes', path: '/clients' },
-    { icon: DollarSign, label: 'Financeiro', path: '/financial' }
+    { icon: DollarSign, label: 'Financeiro', path: '/financial' },
+    { icon: CreditCard, label: 'Empréstimo', path: '/loan' }
   ];
 
   const isActive = (path: string) => location.pathname === path;
