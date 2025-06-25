@@ -17,6 +17,7 @@ const Clients = () => {
       email: 'aglailton@email.com',
       city: 'São Paulo',
       state: 'SP',
+      origem: 'Lead',
       status: 'active'
     },
     {
@@ -26,6 +27,7 @@ const Clients = () => {
       email: 'contato@agronegociosbr.com',
       city: 'Palmas',
       state: 'TO',
+      origem: 'Whatsapp',
       status: 'active'
     },
     {
@@ -35,6 +37,7 @@ const Clients = () => {
       email: 'ailton.silva@email.com',
       city: 'Marabá',
       state: 'PA',
+      origem: 'Lead',
       status: 'active'
     },
     {
@@ -44,6 +47,7 @@ const Clients = () => {
       email: 'alberto.santos@email.com',
       city: 'Salvador',
       state: 'BA',
+      origem: 'Telefone',
       status: 'inactive'
     },
     {
@@ -53,6 +57,7 @@ const Clients = () => {
       email: 'alcimar.trindade@email.com',
       city: 'Araguaína',
       state: 'TO',
+      origem: 'Telefone',
       status: 'active'
     },
     {
@@ -62,6 +67,7 @@ const Clients = () => {
       email: 'alcino.moreira@email.com',
       city: 'Governador Valadares',
       state: 'MG',
+      origem: 'Lead',
       status: 'active'
     },
     {
@@ -71,6 +77,7 @@ const Clients = () => {
       email: 'alessandro.costa@email.com',
       city: 'São José do Rio Preto',
       state: 'SP',
+      origem: 'Whatsapp',
       status: 'pending'
     }
   ];
@@ -80,7 +87,8 @@ const Clients = () => {
     client.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
     client.phone.includes(searchTerm) ||
     client.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    client.state.toLowerCase().includes(searchTerm.toLowerCase())
+    client.state.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    client.origem.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const getStatusColor = (status: string) => {
@@ -152,13 +160,9 @@ const Clients = () => {
                       placeholder="Pesquisar clientes..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="glass border-white/20 text-gray-900 placeholder:text-gray-900/50"
-                      onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                      className="bg-green-400/10 text-gray-900 placeholder:text-gray-900/50"
                     />
                   </div>
-                  <Button className="glass-button" onClick={handleSearch}>
-                    <Search className="w-4 h-4" />
-                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -195,6 +199,7 @@ const Clients = () => {
                       <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Telefone</th>
                       <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Email</th>
                       <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Localização</th>
+                      <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Origem</th>
                       <th className="text-left py-3 px-4 text-gray-900/70 font-medium">Status</th>
                     </tr>
                   </thead>
@@ -246,6 +251,11 @@ const Clients = () => {
                           </div>
                         </td>
                         <td className="py-4 px-4">
+                          <div className="flex items-center text-gray-900/80">
+                            {client.origem}
+                          </div>
+                        </td>
+                        <td className="py-4 px-4">
                           <Badge className={`${getStatusColor(client.status)} border`}>
                             {getStatusText(client.status)}
                           </Badge>
@@ -264,19 +274,19 @@ const Clients = () => {
                   Página 1 de 1
                 </div>
                 <div className="flex space-x-2">
-                  <Button variant="outline" size="sm" className="glass border-white/20 text-gray-900" disabled>
+                  <Button variant="outline" size="sm" className="bg-green-400/10 text-gray-900" disabled>
                     Primeiro
                   </Button>
-                  <Button variant="outline" size="sm" className="glass border-white/20 text-gray-900" disabled>
+                  <Button variant="outline" size="sm" className="bg-green-400/10 text-gray-900" disabled>
                     Anterior
                   </Button>
                   <Button variant="default" size="sm" className="glass-button">
                     1
                   </Button>
-                  <Button variant="outline" size="sm" className="glass border-white/20 text-gray-900" disabled>
+                  <Button variant="outline" size="sm" className="bg-green-400/10 text-gray-900" disabled>
                     Próxima
                   </Button>
-                  <Button variant="outline" size="sm" className="glass border-white/20 text-gray-900" disabled>
+                  <Button variant="outline" size="sm" className="bg-green-400/10 text-gray-900" disabled>
                     Última
                   </Button>
                 </div>

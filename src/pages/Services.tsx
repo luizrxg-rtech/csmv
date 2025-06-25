@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Search, Filter, MoreHorizontal } from 'lucide-react';
+import {Plus, Search, Filter, MoreHorizontal, Trash2} from 'lucide-react';
 import { useState } from 'react';
 
 const Services = () => {
@@ -128,7 +128,7 @@ const Services = () => {
               <Plus className="w-4 h-4 mr-2" />
               Cadastrar Serviços
             </Button>
-            <Button variant="outline" className="glass border-orange-500/30 text-orange-300 hover:bg-orange-500/20">
+            <Button variant="outline" className="glass border-orange-500/30 text-orange-700 hover:bg-orange-500/20">
               ⚠ Impedimentos
             </Button>
           </div>
@@ -136,11 +136,15 @@ const Services = () => {
 
         {/* Filters */}
         <Card className="glass-card border-white/20">
-          <CardHeader>
+          <CardHeader className="flex flex-row justify-between">
             <CardTitle className="text-gray-900 flex items-center">
               <Filter className="w-5 h-5 mr-2" />
               Filtros
             </CardTitle>
+            <Button variant="outline" className="w-fit bg-red-400/10 text-red-700" onClick={handleClearFilters}>
+              Limpar Filtros
+              <Trash2 className="w-5 h-5" />
+            </Button>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -148,7 +152,7 @@ const Services = () => {
                 <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                 <Input 
                   placeholder="Buscar cliente..." 
-                  className="glass border-white/20 text-gray-900 placeholder:text-gray-900/50"
+                  className="bg-green-400/10 text-gray-900 placeholder:text-gray-900/50"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -156,7 +160,7 @@ const Services = () => {
               <div>
                 <label className="text-gray-900/70 text-sm mb-2 block">Empresa</label>
                 <Select value={selectedCompany} onValueChange={setSelectedCompany}>
-                  <SelectTrigger className="glass border-white/20 text-gray-900">
+                  <SelectTrigger className="bg-green-400/10 text-gray-900">
                     <SelectValue placeholder="Selecione..." />
                   </SelectTrigger>
                   <SelectContent className="glass-card border-white/20 bg-slate-900">
@@ -168,7 +172,7 @@ const Services = () => {
               <div>
                 <label className="text-gray-900/70 text-sm mb-2 block">Status</label>
                 <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-                  <SelectTrigger className="glass border-white/20 text-gray-900">
+                  <SelectTrigger className="bg-green-400/10 text-gray-900">
                     <SelectValue placeholder="Todos os status" />
                   </SelectTrigger>
                   <SelectContent className="glass-card border-white/20 bg-slate-900">
@@ -181,7 +185,7 @@ const Services = () => {
               <div>
                 <label className="text-gray-900/70 text-sm mb-2 block">Tipo Serviço</label>
                 <Select value={selectedServiceType} onValueChange={setSelectedServiceType}>
-                  <SelectTrigger className="glass border-white/20 text-gray-900">
+                  <SelectTrigger className="bg-green-400/10 text-gray-900">
                     <SelectValue placeholder="Todos os tipos" />
                   </SelectTrigger>
                   <SelectContent className="glass-card border-white/20 bg-slate-900">
@@ -192,13 +196,7 @@ const Services = () => {
               </div>
             </div>
             <div className="flex justify-end mt-4 space-x-2">
-              <Button variant="outline" className="glass border-white/20 text-gray-900" onClick={handleClearFilters}>
-                Limpar Filtros
-              </Button>
-              <Button className="glass-button" onClick={handleSearch}>
-                <Search className="w-4 h-4 mr-2" />
-                Buscar
-              </Button>
+
             </div>
           </CardContent>
         </Card>

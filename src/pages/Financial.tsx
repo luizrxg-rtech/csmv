@@ -245,7 +245,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Data Inicial</label>
                         <Input 
                           type="date" 
-                          className="glass border-white/20 text-gray-900"
+                          className="bg-green-400/10 text-gray-900"
                           value={receivablesFilters.startDate}
                           onChange={(e) => setReceivablesFilters({...receivablesFilters, startDate: e.target.value})}
                         />
@@ -254,7 +254,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Data Final</label>
                         <Input 
                           type="date" 
-                          className="glass border-white/20 text-gray-900"
+                          className="bg-green-400/10 text-gray-900"
                           value={receivablesFilters.endDate}
                           onChange={(e) => setReceivablesFilters({...receivablesFilters, endDate: e.target.value})}
                         />
@@ -263,7 +263,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                         <Input 
                           placeholder="Pesquisar cliente..." 
-                          className="glass border-white/20 text-gray-900 placeholder:text-gray-900/50"
+                          className="bg-green-400/10 text-gray-900 placeholder:text-gray-900/50"
                           value={receivablesFilters.client}
                           onChange={(e) => setReceivablesFilters({...receivablesFilters, client: e.target.value})}
                         />
@@ -322,7 +322,7 @@ const Financial = () => {
                             <td className="py-4 px-4 text-green-400 font-medium">{item.value}</td>
                             <td className="py-4 px-4 text-gray-900/80">R$ 0,00</td>
                             <td className="py-4 px-4">
-                              <Badge className={`${item.status === 'Pago' ? 'bg-green-500/20 text-green-300 border-green-500/30' : 'bg-red-500/20 text-red-300 border-red-500/30'} border`}>
+                              <Badge className={`${item.status === 'Pago' ? 'bg-green-500/20 text-green-700 border-green-500/30' : 'bg-red-500/20 text-red-700 border-red-500/30'} border`}>
                                 {item.status}
                               </Badge>
                             </td>
@@ -352,7 +352,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Data Inicial</label>
                         <Input 
                           type="date" 
-                          className="glass border-white/20 text-gray-900"
+                          className="bg-green-400/10 text-gray-900"
                           value={payablesFilters.startDate}
                           onChange={(e) => setPayablesFilters({...payablesFilters, startDate: e.target.value})}
                         />
@@ -361,7 +361,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Data Final</label>
                         <Input 
                           type="date" 
-                          className="glass border-white/20 text-gray-900"
+                          className="bg-green-400/10 text-gray-900"
                           value={payablesFilters.endDate}
                           onChange={(e) => setPayablesFilters({...payablesFilters, endDate: e.target.value})}
                         />
@@ -370,7 +370,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Cliente</label>
                         <Input 
                           placeholder="Cliente..." 
-                          className="glass border-white/20 text-gray-900 placeholder:text-gray-900/50"
+                          className="bg-green-400/10 text-gray-900 placeholder:text-gray-900/50"
                           value={payablesFilters.client}
                           onChange={(e) => setPayablesFilters({...payablesFilters, client: e.target.value})}
                         />
@@ -379,7 +379,7 @@ const Financial = () => {
                         <label className="text-gray-900/70 text-sm mb-2 block">Vendedor</label>
                         <Input 
                           placeholder="Vendedor..." 
-                          className="glass border-white/20 text-gray-900 placeholder:text-gray-900/50"
+                          className="bg-green-400/10 text-gray-900 placeholder:text-gray-900/50"
                           value={payablesFilters.vendor}
                           onChange={(e) => setPayablesFilters({...payablesFilters, vendor: e.target.value})}
                         />
@@ -425,7 +425,7 @@ const Financial = () => {
                             <td className="py-4 px-4 text-red-400 font-medium">{item.value}</td>
                             <td className="py-4 px-4 text-gray-900/80">R$ 0,00</td>
                             <td className="py-4 px-4">
-                              <Badge className={`${item.status === 'Pago' ? 'bg-green-500/20 text-green-300 border-green-500/30' : 'bg-red-500/20 text-red-300 border-red-500/30'} border`}>
+                              <Badge className={`${item.status === 'Pago' ? 'bg-green-500/20 text-green-700 border-green-500/30' : 'bg-red-500/20 text-red-700 border-red-500/30'} border`}>
                                 {item.status}
                               </Badge>
                             </td>
@@ -480,11 +480,11 @@ const Financial = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
                       <label className="text-gray-900/70 text-sm mb-2 block">Data Inicial</label>
-                      <Input type="date" className="glass border-white/20 text-gray-900" />
+                      <Input type="date" className="bg-green-400/10 text-gray-900" />
                     </div>
                     <div>
                       <label className="text-gray-900/70 text-sm mb-2 block">Data Final</label>
-                      <Input type="date" className="glass border-white/20 text-gray-900" />
+                      <Input type="date" className="bg-green-400/10 text-gray-900" />
                     </div>
                   </div>
 
